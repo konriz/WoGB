@@ -5,6 +5,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.mygdx.fighters.GameData;
 import com.mygdx.fighters.MapData;
+import com.mygdx.fighters.Move;
 import com.mygdx.fighters.Placeable;
 import com.mygdx.fighters.Unit;
 import com.mygdx.fighters.gui.UI.MovesDialog;
@@ -193,8 +194,35 @@ public class FightProcessor implements InputProcessor {
 		int[] clickTile = {x/MapData.tileSize, y/MapData.tileSize};
 		Placeable target = GameData.occupation(clickTile);
 		
+		if (GameData.selected.isMoving())
+		{
+			if (target instanceof Unit)
+			{
+				Move move = GameData.selected.getMove();
+				
+				if (move.getType() == Move.Type.HEAL && GameData.getActive().contains((Unit) target, false))
+				{
+					GameData.selected.useMove(move, (Unit) target);
+				}
+				else
+				{
+					// Here range of normal attack is defined
+					for(int[] pos : GameData.selected.getDirections())
+					{
+						if (pos[0] == clickTile[0] && pos[1] == clickTile[1])
+						{
+							GameData.selected.useMove(GameData.selected.getMove(), (Unit) target);
+							return true;
+						}
+
+					}
+				}
+			}
+			return true;
+		}
 		
-		if (target instanceof Unit)
+		
+		else if (target instanceof Unit)
 		{
 			Unit targetUnit = (Unit) target;
 			

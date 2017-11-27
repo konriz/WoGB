@@ -27,6 +27,9 @@ public class Unit extends Placeable{
 
 	private boolean hit, boosted;
 	
+	private boolean moves;
+	private Move move;
+	
 	private int percent;
 	private Team team;
 	private Unit.Direction facing;
@@ -47,6 +50,8 @@ public class Unit extends Placeable{
 		this.hit = false;
 		this.boosted = false;
 		GameData.field.getField(this.pos).setOccupation(this);
+		this.moves = false;
+		this.move = null;
 				
 		/*
 		 * Part responsible for loading images and creating animations;
@@ -255,7 +260,7 @@ public class Unit extends Placeable{
 			Unit targetUnit = (Unit) target;
 			if (GameData.isEnemy(targetUnit))
 			{
-				this.hit(targetUnit);
+				this.useMove(this.getCharacter().getMoves().get(0), targetUnit);
 				return;
 			}
 		}
@@ -325,37 +330,6 @@ public class Unit extends Placeable{
 	 * @param dir - enum Direction.dir for movement direction
 	 */
 
-	
-	/**
-	 * Hits target unit 
-	 * @param target - target enemy
-	 * @return true if enemy was hit
-	 */
-	public boolean hit(Unit target)
-	{
-		Character attacker = getCharacter();
-		Character defender = target.getCharacter();
-		
-		Move move = new Move();
-		int moveCost = move.getApCost();
-		int currentAP = attacker.getCurrentAP();
-		
-		if(moveCost > currentAP) {return false;}
-		attacker.dropCurrentAP(moveCost);
-		
-		/* TODO implement various move powers! */
-		int movePower = move.getApCost();
-		
-		/* TODO let the weapon modify dice roll */
-		int damage = (attacker.getToHit() + Dice.use(6)) * movePower;
-		
-		target.setHit(true);
-		defender.dropCurrentHP(damage);
-		defender.checkAlive();
-		return true;
-		
-	}
-	
 	public boolean useMove(Move move, Unit target)
 	{
 		Character active = getCharacter();
@@ -367,6 +341,10 @@ public class Unit extends Placeable{
 		if(moveCost > currentAP)
 		{
 			return false;	
+		}
+		else
+		{
+			this.getCharacter().dropCurrentAP(moveCost);
 		}
 		
 		int movePower = move.getPower();
@@ -419,6 +397,8 @@ public class Unit extends Placeable{
 		default:
 			break;
 		}
+		
+		this.moves = false;
 		return true;
 		
 	}
@@ -439,5 +419,21 @@ public class Unit extends Placeable{
 	{
 		this.getCharacter().resetAP();
 	}
+
+	public boolean isMoving() {
+		return moves;
+	}
+	
+	public void setMove(Move m)
+	{
+		this.move = m;
+		this.moves = true;
+	}
+	
+	public Move getMove()
+	{
+		return this.move;
+	}
+	
 
 }

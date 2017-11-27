@@ -46,7 +46,10 @@ public class MovesDialog extends Dialog {
 				public void clicked(InputEvent event, float x, float y)
 				{
 					// TODO implement working move
-					System.out.println(buttonMove.getName());
+					if (buttonMove.getApCost() <= GameData.selected.getCharacter().getCurrentAP())
+					{
+						GameData.selected.setMove(buttonMove);
+					}
 					hide();
 				}
 			});

@@ -1,0 +1,10 @@
+units meele adds to damage
+boost array for storing and decaying over time boosts and  curses
+make table instead of switch in inputProcessors (is it neccesary?)
+center map on unit when it's big
+make minimap
+strategic/tactical view (?)
+make inventory work (?)
+map without borders - retreat option
+hit effects - unit shakes?
+
