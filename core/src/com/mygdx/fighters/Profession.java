@@ -12,6 +12,14 @@ public class Profession {
 		ZOMBIE
 	}
 	
+	public static enum Moves
+	{
+		NORMAL,
+		RANGED,
+		HEAVY,
+		HEAL
+	}
+	
 	private String name;
 	private String path;
 	private int str;
@@ -35,7 +43,7 @@ public class Profession {
 			mel = 5;
 			this.moves = new Array<Move>() 
 			{{
-				add(new Move("normal", 1));
+				add(new Move("normal", Move.Type.ATTACK, 1));
 			}};
 			break;
 		
@@ -48,8 +56,8 @@ public class Profession {
 			mel = 5;
 			this.moves = new Array<Move>() 
 			{{
-				add(new Move("normal", 1));
-				add(new Move("heavy", 3));
+				add(new Move("normal", Move.Type.ATTACK, 1));
+				add(new Move("heavy", Move.Type.ATTACK, 3));
 			}};
 			break;
 		case SCOUT:
@@ -61,8 +69,8 @@ public class Profession {
 			mel = 5;
 			this.moves = new Array<Move>() 
 			{{
-				add(new Move("normal", 1));
-				add(new Move("aimed", 2));
+				add(new Move("normal", Move.Type.ATTACK, 1));
+				add(new Move("ranged", Move.Type.RANGED, 2));
 			}};
 			break;
 		case ZOMBIE:
@@ -74,8 +82,8 @@ public class Profession {
 			mel = 5;
 			this.moves = new Array<Move>() 
 			{{
-				add(new Move("normal", 1));
-				add(new Move("aimed", 2));
+				add(new Move("normal", Move.Type.ATTACK, 1));
+				add(new Move("bite", Move.Type.LEECH, 2));
 			}};
 			break;
 		}

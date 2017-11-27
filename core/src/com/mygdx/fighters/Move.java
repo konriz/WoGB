@@ -2,12 +2,22 @@ package com.mygdx.fighters;
 
 public class Move {
 
+	public static enum Type
+	{
+		ATTACK,
+		RANGED,
+		HEAL,
+		LEECH
+	}
+	
+	private Type type;
 	private String name;
 	private int apCost;
 	
-	public Move(String name, int apCost)
+	public Move(String name, Type type, int apCost)
 	{
-		this.name = name;
+		this.type = type;
+		this.name = name + " " + type;
 		this.apCost = apCost;
 	}
 	
@@ -25,5 +35,14 @@ public class Move {
 		return apCost;
 	}
 	
+	public int getPower()
+	{
+		return this.apCost;
+	}
+	
+	public Type getType()
+	{
+		return this.type;
+	}
 	
 }

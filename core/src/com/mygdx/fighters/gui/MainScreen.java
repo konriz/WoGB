@@ -33,7 +33,7 @@ public class MainScreen implements Screen {
 	private Texture texture;
 	
 	private BarsTextures textures;
-	private Texture hpBar, apBar, selected, dead, allowed, attackRange, attack, capture, hit;
+	private Texture hpBar, apBar, selected, dead, allowed, attackRange, attack, capture, hit, boosted;
 	private Texture[] states;
 	private Texture[] directions;
 	
@@ -167,19 +167,35 @@ public class MainScreen implements Screen {
 					
 				}
 				
-				if (u.isHit())
+				if (u.isHit() || u.isBoosted())
 				{
 					if (Timer.run)
 					{
 						if (Timer.get() < 0.5f)
 						{
 							Timer.tick(Gdx.graphics.getDeltaTime());
-							batch.draw(hit, u.getPos()[0] * MapData.tileSize, u.getPos()[1] * MapData.tileSize);
+							if (u.isHit())
+							{
+								batch.draw(hit, u.getPos()[0] * MapData.tileSize, u.getPos()[1] * MapData.tileSize);
+							}
+							else if (u.isBoosted())
+							{
+								batch.draw(boosted, u.getPos()[0] * MapData.tileSize, u.getPos()[1] * MapData.tileSize);
+							}
 						}
 						else
 						{
 							Timer.stop();
-							u.setHit(false);
+							
+							if (u.isHit())
+							{
+								u.setHit(false);
+							}
+							else if (u.isBoosted())
+							{
+								u.setBoosted(false);
+							}
+							
 						}
 					}
 						

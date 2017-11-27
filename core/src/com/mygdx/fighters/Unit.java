@@ -25,7 +25,7 @@ public class Unit extends Placeable{
 	private Texture sprite, up, down, left, right, tableSelected;
 	private Character character;
 
-	private boolean hit;
+	private boolean hit, boosted;
 	
 	private int percent;
 	private Team team;
@@ -45,6 +45,7 @@ public class Unit extends Placeable{
 		this.character = new Character(r, p);
 		this.team = team;
 		this.hit = false;
+		this.boosted = false;
 		GameData.field.getField(this.pos).setOccupation(this);
 				
 		/*
@@ -355,6 +356,82 @@ public class Unit extends Placeable{
 		
 	}
 	
+	public boolean useMove(Move move, Unit target)
+	{
+		Character active = getCharacter();
+		Character passive = target.getCharacter();
+		
+		int moveCost = move.getApCost();
+		int currentAP = active.getCurrentAP();
+		
+		if(moveCost > currentAP)
+		{
+			return false;	
+		}
+		
+		int movePower = move.getPower();
+		int damage = 0;
+		int heal = 0;
+		
+		switch (move.getType())
+		{
+		case ATTACK:
+			damage = (active.getToHit() + Dice.use(6)) * movePower;
+			target.setHit(true);
+			passive.dropCurrentHP(damage);
+			passive.checkAlive();
+			break;
+			
+		case HEAL:
+			
+			heal = (Dice.use(6)) * movePower;
+			target.setBoosted(true);
+			if (passive.getCurrentHP() + heal <= passive.getMaxHP())
+			{
+				passive.setCurrentHP(passive.getCurrentHP() + heal);
+			}
+			else
+			{
+				passive.resetHP();
+			}
+			break;
+			
+		case LEECH:
+			damage = (active.getToHit() + Dice.use(6)) * movePower;
+			target.setHit(true);
+			passive.dropCurrentHP(damage);
+			passive.checkAlive();
+			
+			heal = damage;
+			this.setBoosted(true);
+			if (active.getCurrentHP() + heal <= active.getMaxHP())
+			{
+				active.setCurrentHP(active.getCurrentHP() + heal);
+			}
+			else
+			{
+				active.resetHP();
+			}
+			break;
+			
+		case RANGED:
+			break;
+		default:
+			break;
+		}
+		return true;
+		
+	}
+	
+	public void setBoosted(boolean b) {
+		this.boosted = b;
+	}
+	
+	public boolean isBoosted()
+	{
+		return boosted;
+	}
+
 	/**
 	 * resets unit's AP
 	 */

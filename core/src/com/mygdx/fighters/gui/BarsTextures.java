@@ -16,7 +16,7 @@ public class BarsTextures {
 	
 	public BarsTextures()
 	{
-		states = new Texture[7];
+		states = new Texture[8];
 		states[0] = new Texture(Gdx.files.internal("sprites/selected.gif"));
 		states[1] = new Texture(Gdx.files.internal("sprites/dead.gif"));
 		states[2] = new Texture(Gdx.files.internal("sprites/Move/allowed.gif"));
@@ -25,6 +25,7 @@ public class BarsTextures {
 		// TODO make capture image
 		states[5] = new Texture(Gdx.files.internal("sprites/Move/attack.gif"));
 		states[6] = new Texture(Gdx.files.internal("sprites/hit.gif"));
+		states[7] = new Texture(Gdx.files.internal("sprites/boosted.gif"));
 		
 		hpBars = new Texture[hpLimits.length - 1];
 		for (int i = 0; i < hpBars.length; i++)

@@ -9,11 +9,11 @@ import com.mygdx.fighters.gui.FightersGame;
 public class ControlsPanel extends Table {
 
 	private TextButton skipTurnButton;
-	
+	public static ControlsPanel panel;
 	
 	public ControlsPanel()
 	{
-		
+		panel = this;
 		skipTurnButton = new TextButton("Pass turn", FightersGame.skin);
 		skipTurnButton.addListener(new ClickListener(){
 
@@ -25,6 +25,9 @@ public class ControlsPanel extends Table {
 		});
 		
 		this.add(skipTurnButton).width(100).pad(5);
+		
 	}
 	
+	
 }
+

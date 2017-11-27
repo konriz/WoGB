@@ -7,6 +7,7 @@ import com.mygdx.fighters.GameData;
 import com.mygdx.fighters.MapData;
 import com.mygdx.fighters.Placeable;
 import com.mygdx.fighters.Unit;
+import com.mygdx.fighters.gui.UI.MovesDialog;
 import com.badlogic.gdx.Input.Keys;
 
 public class FightProcessor implements InputProcessor {
@@ -196,7 +197,15 @@ public class FightProcessor implements InputProcessor {
 		if (target instanceof Unit)
 		{
 			Unit targetUnit = (Unit) target;
-			if (GameData.getActive().contains(targetUnit, false))
+			
+			if (targetUnit.equals(GameData.selected))
+			{
+				MovesDialog moves = new MovesDialog();
+				MainScreen.stage.addActor(moves);
+				moves.show(MainScreen.stage);
+				return true;
+			}
+			else if (GameData.getActive().contains(targetUnit, false))
 			{
 				gameData.select(targetUnit);
 				return true;

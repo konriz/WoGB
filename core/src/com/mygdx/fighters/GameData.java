@@ -63,6 +63,7 @@ public class GameData {
 				select(unit);
 			}
 		}
+		
 	}
 	
 	public void select(Unit unit)
