@@ -109,7 +109,9 @@ public class GameData {
 			
 			if (getActive().isDeployed())
 			{
-				if (teams.get(0).isDeployed() && teams.get(1).isDeployed())
+				
+				
+				if (teams.areDeployed())
 				{
 					advance();
 					select(getActive().get(0));

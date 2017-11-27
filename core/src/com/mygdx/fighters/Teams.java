@@ -40,4 +40,26 @@ public class Teams extends ArrayList<Team>{
 		while (i < amount);
 	}
 
+	public boolean areDeployed() {
+		
+		int counter = 0;
+		for (Team t : this)
+		{
+			if (t.isDeployed())
+			{
+				counter ++;
+			}
+		}
+		
+		if (counter == this.size())
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		
+	}
+
 }
