@@ -1,11 +1,11 @@
 package com.mygdx.fighters;
 
-import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.utils.Array;
 
-public class Team extends ArrayList<Unit> {
+public class Team extends Array<Unit> {
 	
 	public static Team plain = new Team();
 	private int side;
@@ -22,7 +22,7 @@ public class Team extends ArrayList<Unit> {
 	 * @param name - name for team
 	 * @param race - team's race
 	 */
-	public Team(int side, String name, Enums.Races race)
+	public Team(int side, String name, Race.Races race)
 	{
 		this.side = side;
 		this.name = name;
@@ -38,7 +38,7 @@ public class Team extends ArrayList<Unit> {
 	{
 		this.side = -1;
 		this.name = "World";
-		this.race = new Race(Enums.Races.PLAIN);
+		this.race = new Race(Race.Races.PLAIN);
 		this.alive = false;
 		this.flag = new Texture(Gdx.files.internal("sprites/" + this.race.getPath() + "/flag.gif"));
 	}
@@ -99,7 +99,7 @@ public class Team extends ArrayList<Unit> {
 
 	public boolean isDeployed() {
 		
-		if (deployed == this.size())
+		if (deployed == this.size)
 		{
 			return true;
 		}

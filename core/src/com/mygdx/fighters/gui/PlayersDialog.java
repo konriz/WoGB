@@ -12,7 +12,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
-import com.mygdx.fighters.Enums;
 import com.mygdx.fighters.GameData;
 import com.mygdx.fighters.Team;
 import com.mygdx.fighters.Teams;
@@ -20,7 +19,7 @@ import com.mygdx.fighters.Teams;
 public class PlayersDialog extends Dialog {
 	
 	private SelectBox<Integer> playersBox;
-	private Array<Team> teams;
+	private Teams teams;
 	private Array<Label> players;
 
 	
@@ -67,7 +66,6 @@ public class PlayersDialog extends Dialog {
 			public void changed(ChangeEvent event, Actor actor) {
 				playersTable(playersBox.getSelected());
 			}
-			
 		});
 		
 		button("Ok", true);
@@ -77,27 +75,19 @@ public class PlayersDialog extends Dialog {
 	public void playersTable(Integer playersNo)
 	{
 		// TODO tables for selecting races/teams
-		teams = new Array<Team>(playersNo);
-		Array<Team> availableTeams = new Array<Team>();
-		availableTeams.add(new Team(0, "Humans Empire", Enums.Races.HUMAN));
-		availableTeams.add(new Team(1, "Orks Horde", Enums.Races.ORK));
-		availableTeams.add(new Team(2, "Dwarfs Division", Enums.Races.DWARF));
-		availableTeams.add(new Team(3, "Animals Kingdom", Enums.Races.ANIMAL));
-		availableTeams.shuffle();
+		teams = new Teams(playersNo);
 		int i = 0;
-		while (i < playersNo)
+		for (Team t : teams)
 		{
-			teams.add(availableTeams.get(i));
-			players.get(i).setText("Player " + (i+1) + ": " + teams.get(i).getName());
+			players.get(i).setText("Player " +(i+1) + ": " + t.getName());
 			i++;
 		}
-		while (i < 4)
+		
+		while(i < 4) //3 -> should be Max Players in the game - 1, maybe 8?
 		{
 			players.get(i).setText("");
 			i++;
 		}
-		
-		
 	}
 	
 	@Override
@@ -133,8 +123,4 @@ public class PlayersDialog extends Dialog {
 		this.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2, Align.center);
 		return this;
 	}
-	
-	
-
 }
-

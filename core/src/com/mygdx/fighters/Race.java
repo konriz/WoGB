@@ -1,25 +1,32 @@
 package com.mygdx.fighters;
 
 import com.badlogic.gdx.utils.Array;
-import com.mygdx.fighters.Enums.Professions;
 
 public class Race {
 	
+	public static enum Races
+	{
+		HUMAN,
+		ANIMAL,
+		DWARF,
+		ORK,
+		UNDEAD,
+		PLAIN
+	}
 
-	
 	private String name, path;
-	private Array<Enums.Professions> professions = new Array<Enums.Professions>();
+	private Array<Profession.Professions> professions = new Array<Profession.Professions>();
 	
 	private int str, end, dex, mel;
 	
-	public Race(Enums.Races race)
+	public Race(Races race)
 	{
 		switch (race)
 		{
 		case DWARF:
 			name = "Dwarf";
 			path = "DWARF";
-			professions.addAll(Professions.WARRIOR, Professions.ELITE);
+			professions.addAll(Profession.Professions.WARRIOR, Profession.Professions.ELITE);
 			str = 10;
 			end = 10;
 			dex = 0;
@@ -28,7 +35,7 @@ public class Race {
 		case HUMAN:
 			name = "Human";
 			path = "HUMAN";
-			professions.addAll(Professions.WARRIOR, Professions.ELITE);
+			professions.addAll(Profession.Professions.WARRIOR, Profession.Professions.ELITE);
 			str = 5;
 			end = 5;
 			dex = 5;
@@ -37,7 +44,7 @@ public class Race {
 		case ANIMAL:
 			name = "Animal";
 			path = "ANIMAL";
-			professions.addAll(Professions.WARRIOR);
+			professions.addAll(Profession.Professions.WARRIOR);
 			str = -5;
 			end = -5;
 			dex = 15;
@@ -46,9 +53,19 @@ public class Race {
 		case ORK:
 			name = "Ork";
 			path = "ORK";
-			professions.addAll(Professions.WARRIOR, Professions.ELITE);
+			professions.addAll(Profession.Professions.WARRIOR, Profession.Professions.ELITE);
 			str = 15;
 			end = 10;
+			dex = 0;
+			mel = 5;
+			break;
+			
+		case UNDEAD:
+			name = "Undead";
+			path = "UNDEAD";
+			professions.addAll(Profession.Professions.WARRIOR);
+			str = 5;
+			end = 20;
 			dex = 0;
 			mel = 5;
 			break;
@@ -74,7 +91,7 @@ public class Race {
 		return path;
 	}
 	
-	public Array<Enums.Professions> getProfessions()
+	public Array<Profession.Professions> getProfessions()
 	{
 		return this.professions;
 	}

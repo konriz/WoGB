@@ -1,6 +1,6 @@
 package com.mygdx.fighters;
 
-import java.util.ArrayList;
+import com.badlogic.gdx.utils.Array;
 
 
 /**
@@ -14,7 +14,7 @@ public class Character {
 	private boolean alive;
 	private Race race;
 	private Profession profession;
-	private ArrayList<Move> moves;
+	private Array<Move> moves;
 	
 	private String name;
 	
@@ -178,7 +178,7 @@ public class Character {
 		return this.points;
 	}
 	
-	public ArrayList<Move> getMoves()
+	public Array<Move> getMoves()
 	{
 		return moves;
 	}

@@ -1,17 +1,18 @@
 package com.mygdx.fighters.inventory;
 
-import java.util.ArrayList;
+
+import com.badlogic.gdx.utils.Array;
 
 public class Inventory {
 
-	private ArrayList<Slot> equipment;
+	private Array<Slot> equipment;
 // TODO Backpack!
 //	private ArrayList<Slot> backpack;
 //	private int backpackSize;
 	
 	public Inventory(Character owner, int backpackSize)
 	{
-		equipment = new ArrayList<Slot>() {{
+		equipment = new Array<Slot>() {{
 			add(new Slot(SlotType.HEAD));
 			add(new Slot(SlotType.BODY));
 			add(new Slot(SlotType.LEGS));
@@ -31,7 +32,7 @@ public class Inventory {
 //		}};
 	}
 
-	public ArrayList<Slot> getEquipment() {
+	public Array<Slot> getEquipment() {
 		return equipment;
 	}
 	

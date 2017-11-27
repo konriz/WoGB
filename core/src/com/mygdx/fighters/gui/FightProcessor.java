@@ -196,7 +196,7 @@ public class FightProcessor implements InputProcessor {
 		if (target instanceof Unit)
 		{
 			Unit targetUnit = (Unit) target;
-			if (GameData.getActive().contains(targetUnit))
+			if (GameData.getActive().contains(targetUnit, false))
 			{
 				gameData.select(targetUnit);
 				return true;

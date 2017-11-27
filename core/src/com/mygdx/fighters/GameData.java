@@ -80,7 +80,7 @@ public class GameData {
 	{
 		active ++;
 		
-		if (active == teams.size())
+		if (active == teams.size)
 		{
 			active = 0;
 		}
@@ -140,7 +140,7 @@ public class GameData {
 					if (t.getPoints() > maxPoints[0])
 					{
 						maxPoints[0] = t.getPoints();
-						maxPoints[1] = teams.indexOf(t);
+						maxPoints[1] = teams.indexOf(t, false);
 					}
 				}
 				if (maxPoints[0] >= victoryPoints)
@@ -162,7 +162,7 @@ public class GameData {
 					dead ++;
 				}
 			}
-			if (dead == getActive().size())
+			if (dead == getActive().size)
 			{
 				FightersGame.screen.endGame(teams.get(switchActive()));
 			}
@@ -195,7 +195,7 @@ public class GameData {
 	
 	public static boolean isEnemy(Unit target)
 	{
-		if (getActive().contains(target)){
+		if (getActive().contains(target, false)){
 			return false;
 		}
 		else return true;
@@ -210,10 +210,10 @@ public class GameData {
 		
 	public void selectNext()
 	{
-		int unitCount = getActive().size();
+		int unitCount = getActive().size;
 		while (unitCount > 0)
 		{
-			Unit u = getActive().get(getActive().size() - unitCount);
+			Unit u = getActive().get(getActive().size - unitCount);
 			if (u.getCharacter().isAlive() && u.getApPercent() > 0 && u != selected )
 			{
 				select(u);

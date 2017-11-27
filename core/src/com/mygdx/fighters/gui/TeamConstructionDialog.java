@@ -13,7 +13,6 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.fighters.Team;
 import com.mygdx.fighters.Unit;
-import com.mygdx.fighters.Enums;
 import com.mygdx.fighters.GameData;
 import com.mygdx.fighters.Profession;
 
@@ -39,7 +38,7 @@ public class TeamConstructionDialog extends Dialog {
 		this.getContentTable().add(new Label("Amount", FightersGame.skin));
 		this.getContentTable().add(new Label("Cost", FightersGame.skin));
 		
-		for (Enums.Professions profession : t.getRace().getProfessions())
+		for (Profession.Professions profession : t.getRace().getProfessions())
 		{
 			this.addRow(new Profession(profession));
 		}

@@ -1,10 +1,16 @@
 package com.mygdx.fighters;
 
-import java.util.ArrayList;
-
-import com.mygdx.fighters.Enums.Professions;
+import com.badlogic.gdx.utils.Array;
 
 public class Profession {
+	
+	public static enum Professions
+	{
+		WARRIOR,
+		ELITE,
+		SCOUT,
+		ZOMBIE
+	}
 	
 	private String name;
 	private String path;
@@ -13,7 +19,8 @@ public class Profession {
 	private int dex;
 	private int mel;
 	
-	private ArrayList<Move> moves;
+	private Array<Move> moves;
+	
 	
 	public Profession(Professions profession)
 	{
@@ -26,7 +33,7 @@ public class Profession {
 			end = 5;
 			dex = 5;
 			mel = 5;
-			this.moves = new ArrayList<Move>() 
+			this.moves = new Array<Move>() 
 			{{
 				add(new Move("normal", 1));
 			}};
@@ -39,7 +46,7 @@ public class Profession {
 			end = 5;
 			dex = 5;
 			mel = 5;
-			this.moves = new ArrayList<Move>() 
+			this.moves = new Array<Move>() 
 			{{
 				add(new Move("normal", 1));
 				add(new Move("heavy", 3));
@@ -52,7 +59,20 @@ public class Profession {
 			end = -5;
 			dex = 10;
 			mel = 5;
-			this.moves = new ArrayList<Move>() 
+			this.moves = new Array<Move>() 
+			{{
+				add(new Move("normal", 1));
+				add(new Move("aimed", 2));
+			}};
+			break;
+		case ZOMBIE:
+			name = "Zombie";
+			path = "ZOMBIE";
+			str = 10;
+			end = 10;
+			dex = -5;
+			mel = 5;
+			this.moves = new Array<Move>() 
 			{{
 				add(new Move("normal", 1));
 				add(new Move("aimed", 2));
@@ -85,7 +105,7 @@ public class Profession {
 		return mel;
 	}
 	
-	public ArrayList<Move> getMoves()
+	public Array<Move> getMoves()
 	{
 		return this.moves;
 	}

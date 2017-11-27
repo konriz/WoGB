@@ -1,7 +1,5 @@
 package com.mygdx.fighters;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.utils.Array;
 
 /**
@@ -9,7 +7,7 @@ import com.badlogic.gdx.utils.Array;
  * @author konriz
  *
  */
-public class Teams extends ArrayList<Team>{
+public class Teams extends Array<Team>{
 	
 	/**
 	 * Automatically shuffles teams - something like initiative roll
@@ -26,10 +24,11 @@ public class Teams extends ArrayList<Team>{
 	public Teams(int amount)
 	{
 		Array<Team> teams = new Array<Team>();
-		teams.add(new Team(0, "Humans Empire", Enums.Races.HUMAN));
-		teams.add(new Team(1, "Orks Horde", Enums.Races.ORK));
-		teams.add(new Team(2, "Dwarfs Division", Enums.Races.DWARF));
-		teams.add(new Team(3, "Animals Kingdom", Enums.Races.ANIMAL));
+		teams.add(new Team(0, "Humans Empire", Race.Races.HUMAN));
+		teams.add(new Team(1, "Orks Horde", Race.Races.ORK));
+		teams.add(new Team(2, "Dwarfs Division", Race.Races.DWARF));
+		teams.add(new Team(3, "Animals Kingdom", Race.Races.ANIMAL));
+		teams.add(new Team(4, "Undead Plague", Race.Races.UNDEAD));
 		teams.shuffle();
 		int i = 0;
 		do 
@@ -38,6 +37,8 @@ public class Teams extends ArrayList<Team>{
 			i++;
 		}
 		while (i < amount);
+		
+		
 	}
 
 	public boolean areDeployed() {
@@ -51,7 +52,7 @@ public class Teams extends ArrayList<Team>{
 			}
 		}
 		
-		if (counter == this.size())
+		if (counter == this.size)
 		{
 			return true;
 		}

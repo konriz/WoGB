@@ -15,6 +15,13 @@ import com.mygdx.fighters.Move;
  */
 public class Unit extends Placeable{
 	
+	public static enum Direction{
+		N,
+		S,
+		W,
+		E
+	}
+	
 	private Texture sprite, up, down, left, right, tableSelected;
 	private Character character;
 
@@ -22,7 +29,7 @@ public class Unit extends Placeable{
 	
 	private int percent;
 	private Team team;
-	private Enums.Direction facing;
+	private Unit.Direction facing;
 	
 	// position in TILES!
 	/**
@@ -142,7 +149,7 @@ public class Unit extends Placeable{
 		}
 	}
 	
-	public void step(Enums.Direction dir)
+	public void step(Direction dir)
 	{
 
 	this.rotate(dir);
@@ -197,19 +204,19 @@ public class Unit extends Placeable{
 					// Rotate direction; can be changed to 8-directional character
 					if (index == 0 || index == 1 || index == 2)
 					{
-						this.rotate(Enums.Direction.N);
+						this.rotate(Direction.N);
 					}
 					else if (index == 3)
 					{
-						this.rotate(Enums.Direction.W);
+						this.rotate(Direction.W);
 					}
 					else if (index == 4)
 					{
-						this.rotate(Enums.Direction.E);
+						this.rotate(Direction.E);
 					}
 					else if (index == 5 || index == 6 || index == 7)
 					{
-						this.rotate(Enums.Direction.S);
+						this.rotate(Direction.S);
 					}
 					
 					// Check if unit can move, if not print error
@@ -260,17 +267,17 @@ public class Unit extends Placeable{
 	}
 	
 
-	public void setFacing(Enums.Direction direction)
+	public void setFacing(Direction direction)
 	{
 		this.facing = direction;
 	}
 	
-	public Enums.Direction getFacing()
+	public Direction getFacing()
 	{
 		return this.facing;
 	}
 	
-	public void rotate(Enums.Direction dir)
+	public void rotate(Direction dir)
 	{
 		this.setFacing(dir);
 		switch (dir)
@@ -295,19 +302,19 @@ public class Unit extends Placeable{
 	{
 		if (dir[0] == this.pos[0] && dir[1] > this.pos[1])
 		{
-			this.rotate(Enums.Direction.N);
+			this.rotate(Direction.N);
 		}
 		else if (dir[0] == this.pos[0] && dir[1] < this.pos[1])
 		{
-			this.rotate(Enums.Direction.S);
+			this.rotate(Direction.S);
 		}
 		else if (dir[0] > this.pos[0] && dir[1] == this.pos[1])
 		{
-			this.rotate(Enums.Direction.E);
+			this.rotate(Direction.E);
 		}
 		else if (dir[0] < this.pos[0] && dir[1] == this.pos[1])
 		{
-			this.rotate(Enums.Direction.W);
+			this.rotate(Direction.W);
 		}
 	}
 	

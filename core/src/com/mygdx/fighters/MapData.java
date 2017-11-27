@@ -70,7 +70,7 @@ public class MapData {
 					{
 						flags.add(new Flag(xPos, yPos));
 					}
-					else if (targetFlagOwner < GameData.teams.size())
+					else if (targetFlagOwner < GameData.teams.size)
 					{
 						flags.add(new Flag(xPos, yPos, GameData.teams.get(targetFlagOwner)));
 					}
