@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="35" tilewidth="32" tileheight="32" nextobjectid="1">
+ <properties>
+  <property name="players" type="int" value="2"/>
+ </properties>
+ <tileset firstgid="1" name="main" tilewidth="32" tileheight="32" tilecount="900" columns="30">
+  <image source="my_tileset.png" width="960" height="960"/>
+  <tile id="162">
+   <properties>
+    <property name="moveAP" type="int" value="2"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="901" name="sides" tilewidth="32" tileheight="32" tilecount="3" columns="3">
+  <image source="sides.png" width="96" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="side" type="int" value="-1"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="side" type="int" value="0"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="side" type="int" value="1"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Graphics" width="40" height="35">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3UoRGAMBQE0V98gD6AGqIhhaQWTgQXl4gbWPH8zonLEZF/IMkiq0FLzy6HnAYt9NHnhr45fTU8P/Dtc93wko0Nhze8m2LQAwAAAABf8gBus1z54BUAAA==
+  </data>
+ </layer>
+ <layer name="Block" width="40" height="35">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA92Y6w3CMAyEmwkAMQeF7oEEcyDBGp2XxwAkohVRlBjHvrQpJ90vJPfLOXFJT6ZpDpX6bN1Z16oOxHcErrH3anH5LoDnS2qg8islig/ZM0rUc7T5IfpO1cvl0/DUtP9QuS75fITqC804Sv+UX0qIOZTar1PlJ13DlO83iWJ8c7HEpOkvdQbv1o/Bz+A3f/2/skDvv5HrZb02H28U9dF8K/PlqokvlltNfLHcnLfWe0H9cV9y+FJ72M00Kjcpmy9tftLcuPNaw+ey4+Smmac+H7dO6Z6m+LhCnwUkH7enlGLvHcn/l1idVHaaGUcpN7+Qz+XWetmh76S5fLuBpw24SkkznyXKrVXb/UN7P59aS+C7mvm/k6Z8s34DrIV2QuAVAAA=
+  </data>
+ </layer>
+ <layer name="Start" width="40" height="35" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3UsQ0AIAhFQRJnV9e2tLfAiHcL0Dx+BECu3mrcAOqxHZy60Y5eeclI6nX6C/iGXYFtAZm9rlXgFQAA
+  </data>
+ </layer>
+ <layer name="Cosmetics" width="40" height="35">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3TsREAEBBEUXqgZxWTEogZwc0e/qvgz81tCMBbSlQXADb4bXvc2I7X26bRlZ22Ya2pAzaqOmBSbM/r3oFT/DLwD/aO23Xyhw4L4BUAAA==
+  </data>
+ </layer>
+</map>

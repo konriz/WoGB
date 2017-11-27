@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="15" tilewidth="32" tileheight="32" nextobjectid="1">
+ <properties>
+  <property name="players" type="int" value="2"/>
+ </properties>
+ <tileset firstgid="1" name="my_tileset" tilewidth="32" tileheight="32" tilecount="900" columns="30">
+  <image source="my_tileset.png" width="960" height="960"/>
+  <tile id="162">
+   <properties>
+    <property name="moveAP" type="int" value="2"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="901" name="sides" tilewidth="32" tileheight="32" tilecount="3" columns="3">
+  <image source="sides.png" width="96" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="side" type="int" value="-1"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="side" type="int" value="0"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="side" type="int" value="1"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Graphics" width="20" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA9vGwMCwbYhhVyB2w4PdSTQvGYhbgLgVC24D4lQyzFsExIux4CWDzLwOID4IxO1UMg+kPwWNT4l596DxcH+Qhh+1zDsAjQd0fIgM8xqBuAkPbibRvMGEAXEsOGWwBAAA
+  </data>
+ </layer>
+ <layer name="Block" width="20" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA/NnZGAwoBIOAGJDIKYWMBw1b9S8UfOGtHm5VCxf8oAYALt48ZewBAAA
+  </data>
+ </layer>
+ <layer name="Start" width="20" height="15" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NgGAWjgDzQxoxdvBWHeDsO8VEwCogFACFM2MGwBAAA
+  </data>
+ </layer>
+</map>
