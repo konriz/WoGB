@@ -375,7 +375,7 @@ public class Unit extends Placeable{
 			break;
 			
 		case LEECH:
-			damage = (active.getToHit() + Dice.use(6)) * movePower;
+			damage = (active.getToHit() + Dice.use(6));
 			target.setHit(true);
 			passive.dropCurrentHP(damage);
 			passive.checkAlive();
