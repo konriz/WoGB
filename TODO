@@ -1,4 +1,4 @@
-units meele adds to damage
+units meele adds to damage - ok but check for balance
 boost array for storing and decaying over time boosts and  curses
 make table instead of switch in inputProcessors (is it neccesary?)
 center map on unit when it's big

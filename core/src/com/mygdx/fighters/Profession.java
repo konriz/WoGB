@@ -9,7 +9,8 @@ public class Profession {
 		WARRIOR,
 		ELITE,
 		SCOUT,
-		ZOMBIE
+		VAMPIRE,
+		HEALER
 	}
 	
 	public static enum Moves
@@ -73,17 +74,30 @@ public class Profession {
 				add(new Move("ranged", Move.Type.RANGED, 2));
 			}};
 			break;
-		case ZOMBIE:
-			name = "Zombie";
-			path = "ZOMBIE";
+		case VAMPIRE:
+			name = "Vampire";
+			path = "VAMPIRE";
 			str = 10;
-			end = 10;
-			dex = -5;
-			mel = 5;
+			end = 5;
+			dex = 15;
+			mel = 10;
 			this.moves = new Array<Move>() 
 			{{
 				add(new Move("normal", Move.Type.ATTACK, 1));
 				add(new Move("bite", Move.Type.LEECH, 2));
+			}};
+			break;
+		case HEALER:
+			name = "Healer";
+			path = "HEALER";
+			str = -5;
+			end = -5;
+			dex = 0;
+			mel = 0;
+			this.moves = new Array<Move>() 
+			{{
+				add(new Move("normal", Move.Type.ATTACK, 1));
+				add(new Move("heal", Move.Type.HEAL, 2));
 			}};
 			break;
 		}

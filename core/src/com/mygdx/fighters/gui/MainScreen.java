@@ -12,6 +12,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -34,8 +35,7 @@ public class MainScreen implements Screen {
 	
 	private BarsTextures textures;
 	private Texture hpBar, apBar, selected, dead, allowed, attackRange, attack, capture, hit, boosted;
-	private Texture[] states;
-	private Texture[] directions;
+	private Array<Texture> states, directions;
 	
 	private TiledMapRenderer mapRenderer;
 	private OrthographicCamera cameraMenu;
@@ -63,13 +63,14 @@ public class MainScreen implements Screen {
 		textures = new BarsTextures();
 		directions = textures.getDirections();
 		states = textures.getStates();
-		selected = states[0];
-		dead = states[1]; 
-		allowed = states[2];
-		attackRange = states[3];
-		attack = states[4];
-		capture = states[5];
-		hit = states[6];
+		selected = states.get(0);
+		dead = states.get(1); 
+		allowed = states.get(2);
+		attackRange = states.get(3);
+		attack = states.get(4);
+		capture = states.get(5);
+		hit = states.get(6);
+		boosted = states.get(7);
 		
 		units = new ArrayList<Unit>();
 		for (Team t : GameData.teams)
@@ -103,6 +104,20 @@ public class MainScreen implements Screen {
 	public void render(float delta) {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		
+		
+		if (GameData.phase > 1)
+		{
+			if(GameData.selected.isMoving())
+			{
+				Gdx.graphics.setCursor(FightersGame.target);
+			}
+			else
+			{
+				Gdx.graphics.setCursor(FightersGame.select);
+			}
+		}
+		
 			
 		cameraMap.update();
 		cameraMenu.update();
@@ -217,7 +232,7 @@ public class MainScreen implements Screen {
 						
 						if (target == null)
 						{
-							batch.draw(directions[i], dir[0] * MapData.tileSize, dir[1] * MapData.tileSize);
+							batch.draw(directions.get(i), dir[0] * MapData.tileSize, dir[1] * MapData.tileSize);
 						}
 						else if (target instanceof Flag)
 						{

@@ -59,14 +59,14 @@ public class Character {
 		maxHP = 20 + end;
 		maxAP = dex / 5;
 		res = end / 5;
-		dam = str / 5;
+		dam = str / 5 + mel/5;
 		
 		path = race.getPath() + "/" + profession.getPath();
 		
 		points = str + end + dex + mel;
 		
-		toHit = toHit();
-		toRes = toRes();
+		toHit = dam;
+		toRes = res;
 		
 		resetAP();
 		resetHP();
@@ -183,19 +183,9 @@ public class Character {
 		return moves;
 	}
 	
-	public int toHit()
-	{
-		return dam; // + inventory.getAttack();
-	}
-	
 	public int getToHit()
 	{
 		return toHit;
-	}
-	
-	public int toRes() 
-	{
-		return res; // + inventory.getDefense();
 	}
 	
 	public int getToRes()

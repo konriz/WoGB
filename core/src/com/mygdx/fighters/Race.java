@@ -35,7 +35,7 @@ public class Race {
 		case HUMAN:
 			name = "Human";
 			path = "HUMAN";
-			professions.addAll(Profession.Professions.WARRIOR, Profession.Professions.ELITE);
+			professions.addAll(Profession.Professions.WARRIOR, Profession.Professions.ELITE, Profession.Professions.HEALER);
 			str = 5;
 			end = 5;
 			dex = 5;
@@ -63,7 +63,7 @@ public class Race {
 		case UNDEAD:
 			name = "Undead";
 			path = "UNDEAD";
-			professions.addAll(Profession.Professions.WARRIOR);
+			professions.addAll(Profession.Professions.WARRIOR, Profession.Professions.VAMPIRE);
 			str = 5;
 			end = 20;
 			dex = 0;

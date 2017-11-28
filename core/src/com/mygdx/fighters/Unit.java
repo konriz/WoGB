@@ -27,7 +27,7 @@ public class Unit extends Placeable{
 
 	private boolean hit, boosted;
 	
-	private boolean moves;
+	private boolean moving;
 	private Move move;
 	
 	private int percent;
@@ -50,7 +50,7 @@ public class Unit extends Placeable{
 		this.hit = false;
 		this.boosted = false;
 		GameData.field.getField(this.pos).setOccupation(this);
-		this.moves = false;
+		this.moving = false;
 		this.move = null;
 				
 		/*
@@ -398,7 +398,7 @@ public class Unit extends Placeable{
 			break;
 		}
 		
-		this.moves = false;
+		this.moving = false;
 		return true;
 		
 	}
@@ -421,13 +421,27 @@ public class Unit extends Placeable{
 	}
 
 	public boolean isMoving() {
-		return moves;
+		return moving;
+	}
+	
+	public void setMoving(boolean b)
+	{
+		this.moving = false;
 	}
 	
 	public void setMove(Move m)
 	{
 		this.move = m;
-		this.moves = true;
+		if (m.getApCost() > this.getCharacter().getCurrentAP())
+		{
+			System.out.println("Not enough AP");
+			this.moving = false;
+		}
+		else
+		{
+			this.moving = true;
+		}
+		
 	}
 	
 	public Move getMove()

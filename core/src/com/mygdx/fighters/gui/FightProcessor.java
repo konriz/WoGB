@@ -9,6 +9,7 @@ import com.mygdx.fighters.Move;
 import com.mygdx.fighters.Placeable;
 import com.mygdx.fighters.Unit;
 import com.mygdx.fighters.gui.UI.MovesDialog;
+import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.Input.Keys;
 
 public class FightProcessor implements InputProcessor {
@@ -194,6 +195,12 @@ public class FightProcessor implements InputProcessor {
 		int[] clickTile = {x/MapData.tileSize, y/MapData.tileSize};
 		Placeable target = GameData.occupation(clickTile);
 		
+		if (button == Buttons.RIGHT)
+		{
+			GameData.selected.setMoving(false);
+			return true;
+		}
+		
 		if (GameData.selected.isMoving())
 		{
 			if (target instanceof Unit)
@@ -212,7 +219,6 @@ public class FightProcessor implements InputProcessor {
 						if (pos[0] == clickTile[0] && pos[1] == clickTile[1])
 						{
 							GameData.selected.useMove(GameData.selected.getMove(), (Unit) target);
-							return true;
 						}
 
 					}
