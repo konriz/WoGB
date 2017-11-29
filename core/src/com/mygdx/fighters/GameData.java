@@ -54,16 +54,15 @@ public class GameData {
 	
 	public void select(int[] clickTile)
 	{
-		
-		for (Unit unit : getActive())
+		if (occupation(clickTile) instanceof Unit)
 		{
-			//if (unit.getPos()[0] == clickTile[0] && unit.getPos()[1] == clickTile[1] && unit.getCharacter().isAlive())
-			if (unit.getPos().equals(clickTile) && unit.getCharacter().isAlive())
+			Unit target = (Unit) occupation(clickTile);
+			
+			if(getActive().contains(target))
 			{
-				select(unit);
+				select(target);
 			}
 		}
-		
 	}
 	
 	public void select(Unit unit)
@@ -150,32 +149,27 @@ public class GameData {
 				}
 			}
 			
-			int dead = 0;
-			for (Unit u : getActive())
+			if (getActive().getAll().stream().filter(u->u.getCharacter().isAlive()).findFirst().isPresent())
 			{
-				if (u.getCharacter().isAlive())
-				{
-					u.rest();
-					select(u);
-				}
-				else
-				{
-					dead ++;
-				}
+				getActive().getAll().stream().filter(u->u.getCharacter().isAlive()).forEach(u->u.rest());
+				select(getActive().getAll().stream().filter(u->u.getCharacter().isAlive()).findFirst().get());
 			}
-			if (dead == getActive().size)
+			
+			else
 			{
-				FightersGame.screen.endGame(teams.get(switchActive()));
+				getActive().setAlive(false);
+				FightersGame.screen.endGame(teams.get(switchActive())); // TODO check if all teams dead
+//				skipTurn();
 			}
 		}
 	}
 	
 	public static Placeable occupation(int[] target)
 	{
-
+// TODO get occupation data from map field!
 		for (Team t : teams)
 		{
-			for (Unit u : t)
+			for (Unit u : t.getAll())
 			{
 				if (u.samePos(target) && u.getCharacter().isAlive())
 				{
@@ -196,7 +190,7 @@ public class GameData {
 	
 	public static boolean isEnemy(Unit target)
 	{
-		if (getActive().contains(target, false)){
+		if (getActive().contains(target)){
 			return false;
 		}
 		else return true;
@@ -211,10 +205,10 @@ public class GameData {
 		
 	public void selectNext()
 	{
-		int unitCount = getActive().size;
+		int unitCount = getActive().size();
 		while (unitCount > 0)
 		{
-			Unit u = getActive().get(getActive().size - unitCount);
+			Unit u = getActive().get(getActive().size() - unitCount);
 			if (u.getCharacter().isAlive() && u.getApPercent() > 0 && u != selected )
 			{
 				select(u);

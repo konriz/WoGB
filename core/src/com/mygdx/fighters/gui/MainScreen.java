@@ -75,7 +75,7 @@ public class MainScreen implements Screen {
 		units = new ArrayList<Unit>();
 		for (Team t : GameData.teams)
 		{
-			for (Unit u : t)
+			for (Unit u : t.getAll())
 			{
 				units.add(u);
 			}

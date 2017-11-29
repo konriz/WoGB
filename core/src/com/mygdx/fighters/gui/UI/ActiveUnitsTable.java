@@ -33,7 +33,7 @@ public class ActiveUnitsTable extends Table {
 		units.add(new Label("HP%:", skin)).width(Value.percentWidth(.35f, this));
 		units.add(new Label("AP%:", skin)).width(Value.percentWidth(.35f, this));
 		units.row();
-		for (Unit u : GameData.getActive())
+		for (Unit u : GameData.getActive().getAll())
 		{
 			if (u.equals(GameData.selected))
 			{

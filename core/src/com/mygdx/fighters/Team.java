@@ -1,12 +1,14 @@
 package com.mygdx.fighters;
 
+import java.util.ArrayList;
+import java.util.List;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.utils.Array;
 
-public class Team extends Array<Unit> {
+public class Team {
 	
+	private List<Unit> team;
 	public static Team plain = new Team();
 	private int side;
 	private String name;
@@ -24,6 +26,7 @@ public class Team extends Array<Unit> {
 	 */
 	public Team(int side, String name, Race.Races race)
 	{
+		this.team = new ArrayList<>();
 		this.side = side;
 		this.name = name;
 		this.race = new Race(race);
@@ -43,9 +46,34 @@ public class Team extends Array<Unit> {
 		this.flag = new Texture(Gdx.files.internal("sprites/" + this.race.getPath() + "/flag.gif"));
 	}
 	
+	public void add(Unit u)
+	{
+		team.add(u);
+	}
+	
+	public boolean contains(Unit u)
+	{
+		return team.contains(u);
+	}
+	
 	public int getSide()
 	{
 		return side;
+	}
+	
+	public Unit get(int i)
+	{
+		return team.get(i);
+	}
+	
+	public List<Unit> getAll()
+	{
+		return team;
+	}
+	
+	public int size()
+	{
+		return team.size();
 	}
 	
 	public String getName()
@@ -99,7 +127,7 @@ public class Team extends Array<Unit> {
 
 	public boolean isDeployed() {
 		
-		if (deployed == this.size)
+		if (deployed == team.size())
 		{
 			return true;
 		}

@@ -207,7 +207,7 @@ public class FightProcessor implements InputProcessor {
 			{
 				Move move = GameData.selected.getMove();
 				
-				if (move.getType() == Move.Type.HEAL && GameData.getActive().contains((Unit) target, false))
+				if (move.getType() == Move.Type.HEAL && GameData.getActive().contains((Unit) target))
 				{
 					GameData.selected.useMove(move, (Unit) target);
 				}
@@ -239,7 +239,7 @@ public class FightProcessor implements InputProcessor {
 				moves.show(MainScreen.stage);
 				return true;
 			}
-			else if (GameData.getActive().contains(targetUnit, false))
+			else if (GameData.getActive().contains(targetUnit))
 			{
 				gameData.select(targetUnit);
 				return true;
