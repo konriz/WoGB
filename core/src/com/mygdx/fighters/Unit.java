@@ -4,8 +4,7 @@ package com.mygdx.fighters;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.mygdx.fighters.Character;
-import com.mygdx.fighters.Dice;
-import com.mygdx.fighters.Move;
+import com.mygdx.fighters.moves.Move;
 
 /**
  * Class for storing backend data of each unit
@@ -190,7 +189,6 @@ public class Unit extends Placeable{
 			break;
 
 		}
-		this.setRange(this.getCharacter().getCurrentAP());
 		this.setDirections();
 		GameData.field.getField(getPos()).setOccupation(this);
 	}
@@ -266,7 +264,6 @@ public class Unit extends Placeable{
 		}
 			
 			// Update current unit state
-			this.setRange(this.getCharacter().getCurrentAP());
 			this.setDirections();
 			GameData.field.getField(getPos()).setOccupation(this);
 		
@@ -332,75 +329,15 @@ public class Unit extends Placeable{
 
 	public boolean useMove(Move move, Unit target)
 	{
-		Character active = getCharacter();
-		Character passive = target.getCharacter();
-		
-		int moveCost = move.getApCost();
-		int currentAP = active.getCurrentAP();
-		
-		if(moveCost > currentAP)
+		if(move.getApCost() > getCharacter().getCurrentAP())
 		{
 			return false;	
 		}
 		else
 		{
-			this.getCharacter().dropCurrentAP(moveCost);
+			move.useOn(target);
 		}
-		
-		int movePower = move.getPower();
-		int damage = 0;
-		int heal = 0;
-		
-		switch (move.getType())
-		{
-		case ATTACK:
-			damage = (active.getToHit() + Dice.use(6)) * movePower;
-			target.setHit(true);
-			passive.dropCurrentHP(damage);
-			passive.checkAlive();
-			break;
-			
-		case HEAL:
-			
-			heal = (Dice.use(6)) * movePower;
-			target.setBoosted(true);
-			if (passive.getCurrentHP() + heal <= passive.getMaxHP())
-			{
-				passive.setCurrentHP(passive.getCurrentHP() + heal);
-			}
-			else
-			{
-				passive.resetHP();
-			}
-			break;
-			
-		case LEECH:
-			damage = (active.getToHit() + Dice.use(6));
-			target.setHit(true);
-			passive.dropCurrentHP(damage);
-			passive.checkAlive();
-			
-			heal = damage;
-			this.setBoosted(true);
-			if (active.getCurrentHP() + heal <= active.getMaxHP())
-			{
-				active.setCurrentHP(active.getCurrentHP() + heal);
-			}
-			else
-			{
-				active.resetHP();
-			}
-			break;
-			
-		case RANGED:
-			break;
-		default:
-			break;
-		}
-		
-		this.moving = false;
 		return true;
-		
 	}
 	
 	public void setBoosted(boolean b) {

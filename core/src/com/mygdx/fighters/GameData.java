@@ -68,7 +68,6 @@ public class GameData {
 	public void select(Unit unit)
 	{
 		selected = unit;
-		selected.setRange(selected.getCharacter().getCurrentAP());
 		selected.setDirections();
 	}
 	

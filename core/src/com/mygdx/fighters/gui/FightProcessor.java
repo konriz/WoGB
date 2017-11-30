@@ -1,12 +1,12 @@
 package com.mygdx.fighters.gui;
 
+import java.util.Arrays;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.mygdx.fighters.GameData;
 import com.mygdx.fighters.MapData;
-import com.mygdx.fighters.Move;
-import com.mygdx.fighters.Placeable;
 import com.mygdx.fighters.Unit;
 import com.mygdx.fighters.gui.UI.MovesDialog;
 import com.badlogic.gdx.Input.Buttons;
@@ -193,7 +193,6 @@ public class FightProcessor implements InputProcessor {
 		int y = (int) ((Gdx.graphics.getHeight()/2.0 - screenY) * camera.zoom + camera.position.y );
 		
 		int[] clickTile = {x/MapData.tileSize, y/MapData.tileSize};
-		Placeable target = GameData.occupation(clickTile);
 		
 		if (button == Buttons.RIGHT)
 		{
@@ -201,72 +200,48 @@ public class FightProcessor implements InputProcessor {
 			return true;
 		}
 		
-		if (GameData.selected.isMoving())
-		{
-			if (target instanceof Unit)
-			{
-				Move move = GameData.selected.getMove();
-				
-				if (move.getType() == Move.Type.HEAL && GameData.getActive().contains((Unit) target))
-				{
-					GameData.selected.useMove(move, (Unit) target);
-				}
-				else
-				{
-					// Here range of normal attack is defined
-					for(int[] pos : GameData.selected.getDirections())
-					{
-						if (pos[0] == clickTile[0] && pos[1] == clickTile[1])
-						{
-							GameData.selected.useMove(GameData.selected.getMove(), (Unit) target);
-						}
-
-					}
-				}
-			}
-			return true;
-		}
 		
-		
-		else if (target instanceof Unit)
+		else if (GameData.occupation(clickTile) instanceof Unit)
 		{
-			Unit targetUnit = (Unit) target;
+			Unit target = (Unit) GameData.occupation(clickTile);
 			
-			if (targetUnit.equals(GameData.selected))
+			if (GameData.selected.isMoving())
+			{
+				// TODO disable friendly fire and enemy healing - or not?
+				// TODO range of attack!
+				GameData.selected.getMove().tryOn(target);
+				return true;
+			}
+			else if (target.equals(GameData.selected))
 			{
 				MovesDialog moves = new MovesDialog();
 				MainScreen.stage.addActor(moves);
 				moves.show(MainScreen.stage);
 				return true;
 			}
-			else if (GameData.getActive().contains(targetUnit))
+			else if (GameData.getActive().contains(target))
 			{
-				gameData.select(targetUnit);
+				gameData.select(target);
 				return true;
 			}
 			else
 			{
-				// Here range of normal attack is defined
-				for(int[] pos : GameData.selected.getDirections())
+				for(int[] pos : GameData.selected.range(1))
 				{
-					if (pos[0] == clickTile[0] && pos[1] == clickTile[1])
+					if(Arrays.equals(pos, clickTile))
 					{
 						GameData.selected.move(clickTile);
 						return true;
 					}
-
 				}
-				System.out.println("Out of attack range!");
 				return true;
 			}
 		}
-		
 		else
 		{
 			GameData.selected.move(clickTile);
 			return true;
 		}
-
 	}
 
 	@Override

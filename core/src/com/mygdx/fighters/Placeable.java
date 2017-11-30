@@ -48,20 +48,27 @@ public class Placeable {
 			return false;
 		}
 	}
+	//TODO interface ranged
 	
 	public int[][] getRange()
 	{	
 		return range;
 	}
 	
-	public void setRange(int radius)
+	public void setRange(int[][] range)
+	{
+		this.range = range;
+	}
+	
+	public int[][] range(int radius)
 	{
 		int dim = 2 * radius + 1;
-		this.range = new int[dim * dim][2];
+		int[][] range = new int[dim * dim][2];
 		
 		if (radius == 0)
 		{
-			return;
+			range[0] = getPos();
+			return range;
 		}
 				
 		int i = 0;
@@ -77,6 +84,7 @@ public class Placeable {
 				}
 			}
 		}
+		return range;
 	}
 	
 	public int[][] getDirections()

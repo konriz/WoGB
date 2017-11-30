@@ -1,6 +1,8 @@
 package com.mygdx.fighters;
 
 import com.badlogic.gdx.utils.Array;
+import com.mygdx.fighters.moves.Move;
+import com.mygdx.fighters.moves.Moves;
 
 public class Profession {
 	
@@ -11,14 +13,6 @@ public class Profession {
 		SCOUT,
 		VAMPIRE,
 		HEALER
-	}
-	
-	public static enum Moves
-	{
-		NORMAL,
-		RANGED,
-		HEAVY,
-		HEAL
 	}
 	
 	private String name;
@@ -44,7 +38,7 @@ public class Profession {
 			mel = 5;
 			this.moves = new Array<Move>() 
 			{{
-				add(new Move("normal", Move.Type.ATTACK, 1));
+				add(Moves.attack);
 			}};
 			break;
 		
@@ -57,8 +51,8 @@ public class Profession {
 			mel = 5;
 			this.moves = new Array<Move>() 
 			{{
-				add(new Move("normal", Move.Type.ATTACK, 1));
-				add(new Move("heavy", Move.Type.ATTACK, 3));
+				add(Moves.attack);
+				add(Moves.attackHeavy);
 			}};
 			break;
 		case SCOUT:
@@ -70,8 +64,8 @@ public class Profession {
 			mel = 5;
 			this.moves = new Array<Move>() 
 			{{
-				add(new Move("normal", Move.Type.ATTACK, 1));
-				add(new Move("ranged", Move.Type.RANGED, 2));
+				add(Moves.attack);
+				// TODO ranged attack here
 			}};
 			break;
 		case VAMPIRE:
@@ -83,8 +77,8 @@ public class Profession {
 			mel = 10;
 			this.moves = new Array<Move>() 
 			{{
-				add(new Move("normal", Move.Type.ATTACK, 1));
-				add(new Move("bite", Move.Type.LEECH, 2));
+				add(Moves.attack);
+				add(Moves.leech);
 			}};
 			break;
 		case HEALER:
@@ -96,8 +90,8 @@ public class Profession {
 			mel = 0;
 			this.moves = new Array<Move>() 
 			{{
-				add(new Move("normal", Move.Type.ATTACK, 1));
-				add(new Move("heal", Move.Type.HEAL, 2));
+				add(Moves.attack);
+				add(Moves.heal);
 			}};
 			break;
 		}

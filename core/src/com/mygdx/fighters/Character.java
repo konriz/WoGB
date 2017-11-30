@@ -1,6 +1,7 @@
 package com.mygdx.fighters;
 
 import com.badlogic.gdx.utils.Array;
+import com.mygdx.fighters.moves.Move;
 
 
 /**
@@ -192,12 +193,17 @@ public class Character {
 	{
 		return toRes;
 	}
-	
-//	public Inventory getInventory()
-//	{
-//		return this.inventory;
-//	}
 
-
+	public void buffCurrentHP(int heal) {
+		if (getCurrentHP() + heal > getMaxHP())
+		{
+			resetHP();
+		}
+		else
+		{
+			setCurrentHP(getCurrentHP() + heal);
+		}
+		
+	}
 	
 }

@@ -18,7 +18,7 @@ public class Flag extends Placeable {
 		pos[1] = yPos;
 		GameData.field.getField(pos).setOccupation(this);
 		flag = new Texture(Gdx.files.internal("sprites/flag.gif"));
-		this.setRange(3);
+		this.setRange(range(3));
 		
 		this.owner = owner;
 

@@ -5,8 +5,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.fighters.GameData;
-import com.mygdx.fighters.Move;
 import com.mygdx.fighters.gui.FightersGame;
+import com.mygdx.fighters.moves.Move;
 
 public class MovesDialog extends Dialog {
 

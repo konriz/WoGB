@@ -110,6 +110,7 @@ public class MainScreen implements Screen {
 		{
 			if(GameData.selected.isMoving())
 			{
+				//TODO change cursor to active when in move range
 				Gdx.graphics.setCursor(FightersGame.target);
 			}
 			else
@@ -210,7 +211,6 @@ public class MainScreen implements Screen {
 							{
 								u.setBoosted(false);
 							}
-							
 						}
 					}
 						
