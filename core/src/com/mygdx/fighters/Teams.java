@@ -1,6 +1,7 @@
 package com.mygdx.fighters;
 
 import com.badlogic.gdx.utils.Array;
+import com.mygdx.fighters.units.Race;
 
 /**
  * Aray for storing teams fighting on the screen;

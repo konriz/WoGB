@@ -6,8 +6,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.Value;
 import com.mygdx.fighters.GameData;
-import com.mygdx.fighters.Unit;
 import com.mygdx.fighters.gui.FightersGame;
+import com.mygdx.fighters.units.Unit;
 
 public class ActiveUnitsTable extends Table {
 

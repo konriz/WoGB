@@ -7,8 +7,8 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.mygdx.fighters.GameData;
 import com.mygdx.fighters.MapData;
-import com.mygdx.fighters.Unit;
 import com.mygdx.fighters.gui.UI.MovesDialog;
+import com.mygdx.fighters.units.Unit;
 import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.Input.Keys;
 

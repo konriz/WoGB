@@ -21,8 +21,8 @@ import com.mygdx.fighters.GameData;
 import com.mygdx.fighters.MapData;
 import com.mygdx.fighters.Placeable;
 import com.mygdx.fighters.Team;
-import com.mygdx.fighters.Unit;
 import com.mygdx.fighters.gui.UI.GameTable;
+import com.mygdx.fighters.units.Unit;
 
 public class MainScreen implements Screen {
 	

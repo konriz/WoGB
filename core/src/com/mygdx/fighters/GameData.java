@@ -3,6 +3,7 @@ package com.mygdx.fighters;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.fighters.gui.FightersGame;
+import com.mygdx.fighters.units.Unit;
 
 public class GameData {
 

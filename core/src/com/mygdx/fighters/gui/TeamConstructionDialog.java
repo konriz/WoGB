@@ -12,9 +12,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.fighters.Team;
-import com.mygdx.fighters.Unit;
+import com.mygdx.fighters.units.Profession;
+import com.mygdx.fighters.units.Unit;
 import com.mygdx.fighters.GameData;
-import com.mygdx.fighters.Profession;
 
 public class TeamConstructionDialog extends Dialog {
 

@@ -2,7 +2,7 @@ package com.mygdx.fighters.moves;
 
 import com.mygdx.fighters.Dice;
 import com.mygdx.fighters.GameData;
-import com.mygdx.fighters.Unit;
+import com.mygdx.fighters.units.Unit;
 
 public class Leech extends Move {
 	

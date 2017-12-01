@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.mygdx.fighters.Flag;
 import com.mygdx.fighters.GameData;
 import com.mygdx.fighters.MapData;
-import com.mygdx.fighters.Unit;
+import com.mygdx.fighters.units.Unit;
 import com.badlogic.gdx.Input.Keys;
 
 public class SelectProcessor implements InputProcessor {

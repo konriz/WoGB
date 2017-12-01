@@ -20,7 +20,7 @@ public class SelectedLabel extends Label {
 	{
 		try
 		{
-			com.mygdx.fighters.Character selected = GameData.selected.getCharacter();
+			com.mygdx.fighters.units.Character selected = GameData.selected.getCharacter();
 		
 			labelElements[0] = selected.getName();
 			
