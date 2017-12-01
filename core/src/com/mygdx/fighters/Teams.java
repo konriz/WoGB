@@ -1,7 +1,7 @@
 package com.mygdx.fighters;
 
 import com.badlogic.gdx.utils.Array;
-import com.mygdx.fighters.units.Race;
+import com.mygdx.fighters.units.Races;
 
 /**
  * Aray for storing teams fighting on the screen;
@@ -25,11 +25,11 @@ public class Teams extends Array<Team>{
 	public Teams(int amount)
 	{
 		Array<Team> teams = new Array<Team>();
-		teams.add(new Team(0, "Humans Empire", Race.Races.HUMAN));
-		teams.add(new Team(1, "Orks Horde", Race.Races.ORK));
-		teams.add(new Team(2, "Dwarfs Division", Race.Races.DWARF));
-		teams.add(new Team(3, "Animals Kingdom", Race.Races.ANIMAL));
-		teams.add(new Team(4, "Undead Plague", Race.Races.UNDEAD));
+		teams.add(new Team(0, "Humans Empire", Races.human));
+		teams.add(new Team(1, "Orks Horde", Races.ork));
+		teams.add(new Team(2, "Dwarfs Division", Races.dwarf));
+		teams.add(new Team(3, "Animals Kingdom", Races.animal));
+		teams.add(new Team(4, "Undead Plague", Races.undead));
 		teams.shuffle();
 		int i = 0;
 		do 

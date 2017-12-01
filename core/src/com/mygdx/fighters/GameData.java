@@ -3,7 +3,6 @@ package com.mygdx.fighters;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.fighters.gui.FightersGame;
-import com.mygdx.fighters.units.Unit;
 
 public class GameData {
 
@@ -16,7 +15,7 @@ public class GameData {
 	
 	public static Teams teams;
 	public static int active;
-	public static Unit selected;
+	public static Soldier selected;
 	
 	public static Array<Flag> flags;
 	
@@ -55,9 +54,9 @@ public class GameData {
 	
 	public void select(int[] clickTile)
 	{
-		if (occupation(clickTile) instanceof Unit)
+		if (occupation(clickTile) instanceof Soldier)
 		{
-			Unit target = (Unit) occupation(clickTile);
+			Soldier target = (Soldier) occupation(clickTile);
 			
 			if(getActive().contains(target))
 			{
@@ -66,9 +65,9 @@ public class GameData {
 		}
 	}
 	
-	public void select(Unit unit)
+	public void select(Soldier soldier)
 	{
-		selected = unit;
+		selected = soldier;
 		selected.setDirections();
 	}
 	
@@ -96,7 +95,6 @@ public class GameData {
 			if(switchActive() == 0)
 			{
 				advance();
-				select(getActive().get(0));
 			}
 		}
 		
@@ -109,8 +107,6 @@ public class GameData {
 			
 			if (getActive().isDeployed())
 			{
-				
-				
 				if (teams.areDeployed())
 				{
 					advance();
@@ -122,9 +118,7 @@ public class GameData {
 					skipTurn();
 				}
 			}
-
 		}
-		
 		
 		else if (phase == 2)
 		{
@@ -169,11 +163,11 @@ public class GameData {
 // TODO get occupation data from map field!
 		for (Team t : teams)
 		{
-			for (Unit u : t.getAll())
+			for (Soldier s : t.getAll())
 			{
-				if (u.samePos(target) && u.getCharacter().isAlive())
+				if (s.samePos(target) && s.getCharacter().isAlive())
 				{
-						return u;
+						return s;
 				}			
 			}
 		}
@@ -188,7 +182,7 @@ public class GameData {
 		return null;
 	}
 	
-	public static boolean isEnemy(Unit target)
+	public static boolean isEnemy(Soldier target)
 	{
 		if (getActive().contains(target)){
 			return false;
@@ -208,10 +202,10 @@ public class GameData {
 		int unitCount = getActive().size();
 		while (unitCount > 0)
 		{
-			Unit u = getActive().get(getActive().size() - unitCount);
-			if (u.getCharacter().isAlive() && u.getApPercent() > 0 && u != selected )
+			Soldier s = getActive().get(getActive().size() - unitCount);
+			if (s.getCharacter().isAlive() && s.getApPercent() > 0 && s != selected )
 			{
-				select(u);
+				select(s);
 				return;
 			}
 			unitCount --;

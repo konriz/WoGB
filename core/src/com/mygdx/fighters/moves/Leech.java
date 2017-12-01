@@ -2,7 +2,7 @@ package com.mygdx.fighters.moves;
 
 import com.mygdx.fighters.Dice;
 import com.mygdx.fighters.GameData;
-import com.mygdx.fighters.units.Unit;
+import com.mygdx.fighters.Soldier;
 
 public class Leech extends Move {
 	
@@ -15,7 +15,7 @@ public class Leech extends Move {
 	}
 
 	@Override
-	public void useOn(Unit target) {
+	public void useOn(Soldier target) {
 		GameData.selected.getCharacter().dropCurrentAP(getApCost());
 		target.setHit(true);
 		int damage = getDamage();
@@ -27,6 +27,6 @@ public class Leech extends Move {
 	
 	public int getDamage()
 	{
-		return (GameData.selected.getCharacter().getToHit() + Dice.use(6)) * getPower();
+		return (GameData.selected.getCharacter().getDamage() + Dice.use(6)) * getPower();
 	}
 }

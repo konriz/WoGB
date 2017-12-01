@@ -15,6 +15,8 @@ import com.mygdx.fighters.Team;
 import com.mygdx.fighters.units.Profession;
 import com.mygdx.fighters.units.Unit;
 import com.mygdx.fighters.GameData;
+import com.mygdx.fighters.SoldierBuilder;
+import com.mygdx.fighters.units.Character;
 
 public class TeamConstructionDialog extends Dialog {
 
@@ -38,9 +40,9 @@ public class TeamConstructionDialog extends Dialog {
 		this.getContentTable().add(new Label("Amount", FightersGame.skin));
 		this.getContentTable().add(new Label("Cost", FightersGame.skin));
 		
-		for (Profession.Professions profession : t.getRace().getProfessions())
+		for (Profession profession : t.getRace().getProfessions())
 		{
-			this.addRow(new Profession(profession));
+			this.addRow(profession);
 		}
 		
 		this.getContentTable().row();
@@ -106,10 +108,11 @@ public class TeamConstructionDialog extends Dialog {
 	{
 		for (CounterLabel unitsCount : unitsAmounts)
 		{
+			Unit unit = new Unit(team.getRace(), unitsCount.getProfession());
 			int i = 0;
 			while (i < unitsCount.getValue())
 			{
-				this.team.add(new Unit(this.team.getRace(), unitsCount.getProfession(), this.team));
+				this.team.add(new SoldierBuilder().setCharacter(team.getRace(), unitsCount.getProfession()).setUnit(unit).setTeam(team).buildSoldier());
 				i++;
 			}
 		}
@@ -117,13 +120,13 @@ public class TeamConstructionDialog extends Dialog {
 	
 	public void addRow(Profession profession)
 	{
-		final Unit sampleUnit = new Unit(this.team.getRace(), profession, this.team);
+		final int unitPoints = new Character(team.getRace(), profession).getPoints();
 
 		this.getContentTable().row();
 		final Label professionName = new Label(profession.getName(), FightersGame.skin);
-		final CounterLabel unitsLabel = new CounterLabel(profession,sampleUnit.getCharacter().getPoints());
+		final CounterLabel unitsLabel = new CounterLabel(profession, unitPoints);
 		unitsAmounts.add(unitsLabel);
-		final Label pointsLabel = new Label(Integer.toString(sampleUnit.getCharacter().getPoints()), FightersGame.skin);
+		final Label pointsLabel = new Label(Integer.toString(unitPoints), FightersGame.skin);
 		TextButton lessButton = new TextButton("-1", FightersGame.skin);
 		lessButton.addListener(new ClickListener() {
 			public void clicked (InputEvent event, float x, float y)

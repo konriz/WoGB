@@ -15,6 +15,12 @@ public class Race {
 		this.stats = stats;
 	}
 	
+	public Race()
+	{
+		this.name = "Plain";
+		this.path = name.toUpperCase();
+	}
+	
 	public String getName() {
 		return name;
 	}

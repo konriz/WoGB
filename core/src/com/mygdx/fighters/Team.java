@@ -6,11 +6,10 @@ import java.util.List;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.mygdx.fighters.units.Race;
-import com.mygdx.fighters.units.Unit;
 
 public class Team {
 	
-	private List<Unit> team;
+	private List<Soldier> team;
 	public static Team plain = new Team();
 	private int side;
 	private String name;
@@ -26,12 +25,12 @@ public class Team {
 	 * @param name - name for team
 	 * @param race - team's race
 	 */
-	public Team(int side, String name, Race.Races race)
+	public Team(int side, String name, Race race)
 	{
 		this.team = new ArrayList<>();
 		this.side = side;
 		this.name = name;
-		this.race = new Race(race);
+		this.race = race;
 		this.alive = true;
 		this.flag = new Texture(Gdx.files.internal("sprites/" + this.race.getPath() + "/flag.gif"));
 		this.banner = new Texture(Gdx.files.internal("sprites/" + this.race.getPath() + "/banner.gif"));
@@ -43,19 +42,19 @@ public class Team {
 	{
 		this.side = -1;
 		this.name = "World";
-		this.race = new Race(Race.Races.PLAIN);
+		this.race = new Race();
 		this.alive = false;
 		this.flag = new Texture(Gdx.files.internal("sprites/" + this.race.getPath() + "/flag.gif"));
 	}
 	
-	public void add(Unit u)
+	public void add(Soldier s)
 	{
-		team.add(u);
+		team.add(s);
 	}
 	
-	public boolean contains(Unit u)
+	public boolean contains(Soldier s)
 	{
-		return team.contains(u);
+		return team.contains(s);
 	}
 	
 	public int getSide()
@@ -63,12 +62,12 @@ public class Team {
 		return side;
 	}
 	
-	public Unit get(int i)
+	public Soldier get(int i)
 	{
 		return team.get(i);
 	}
 	
-	public List<Unit> getAll()
+	public List<Soldier> getAll()
 	{
 		return team;
 	}

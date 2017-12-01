@@ -1,6 +1,6 @@
 package com.mygdx.fighters.moves;
 
-import com.mygdx.fighters.units.Unit;
+import com.mygdx.fighters.Soldier;
 
 public interface Perform {
 
@@ -16,7 +16,7 @@ public interface Perform {
 	public void setRange(int range);
 	public int getRange();
 	
-	public void useOn(Unit target);
-	public void tryOn(Unit target);
+	public void useOn(Soldier target);
+	public void tryOn(Soldier target);
 	
 }

@@ -3,7 +3,7 @@ package com.mygdx.fighters.moves;
 import java.util.Arrays;
 
 import com.mygdx.fighters.GameData;
-import com.mygdx.fighters.units.Unit;
+import com.mygdx.fighters.Soldier;
 
 public abstract class Move implements Perform {
 
@@ -53,7 +53,7 @@ public abstract class Move implements Perform {
 		return false;
 	}
 	
-	public boolean reach(Unit target)
+	public boolean reach(Soldier target)
 	{
 		return reach(target.getPos());
 	}
@@ -68,7 +68,7 @@ public abstract class Move implements Perform {
 		return this.power;
 	}
 	
-	public void tryOn(Unit target)
+	public void tryOn(Soldier target)
 	{
 		if (reach(target))
 		{

@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.mygdx.fighters.Flag;
 import com.mygdx.fighters.GameData;
 import com.mygdx.fighters.MapData;
-import com.mygdx.fighters.units.Unit;
+import com.mygdx.fighters.Soldier;
 import com.badlogic.gdx.Input.Keys;
 
 public class SelectProcessor implements InputProcessor {
@@ -99,7 +99,7 @@ public class SelectProcessor implements InputProcessor {
 			}
 			else if (GameData.field.getField(pos).getOccupation() != null)
 			{
-				if (GameData.field.getField(pos).getOccupation() instanceof Unit)
+				if (GameData.field.getField(pos).getOccupation() instanceof Soldier)
 				{
 					System.out.println("Unit already here!");
 				}

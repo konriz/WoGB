@@ -8,6 +8,8 @@ import com.mygdx.fighters.units.Unit.Direction;
 public interface Fight {
 	
 	public Character getCharacter();
+	public Unit getUnit();
+	public Team getTeam();
 	
 	public int getHpPercent();
 	public int getApPercent();
@@ -21,7 +23,7 @@ public interface Fight {
 	public void setFacing(Direction direction);
 	public Direction getFacing();
 	
-	public boolean useMove(Move move, Unit target);
+	public boolean useMove(Move move, Soldier target);
 	
 	public void setBoosted(boolean b);
 	public boolean isBoosted();

@@ -6,8 +6,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.Value;
 import com.mygdx.fighters.GameData;
+import com.mygdx.fighters.Soldier;
 import com.mygdx.fighters.gui.FightersGame;
-import com.mygdx.fighters.units.Unit;
 
 public class ActiveUnitsTable extends Table {
 
@@ -33,19 +33,19 @@ public class ActiveUnitsTable extends Table {
 		units.add(new Label("HP%:", skin)).width(Value.percentWidth(.35f, this));
 		units.add(new Label("AP%:", skin)).width(Value.percentWidth(.35f, this));
 		units.row();
-		for (Unit u : GameData.getActive().getAll())
+		for (Soldier s : GameData.getActive().getAll())
 		{
-			if (u.equals(GameData.selected))
+			if (s.equals(GameData.selected))
 			{
-				units.add(new Image(u.getTableSelected()));
+				units.add(new Image(s.getUnit().getSelected()));
 			}
 			else
 			{
-				units.add(new Image(u.getDown()));
+				units.add(new Image(s.getUnit().getDown()));
 			}
 			
-			units.add(new Label("" + u.getHpPercent(), this.skin)).width(Value.percentWidth(.35f, this));
-			units.add(new Label("" + u.getApPercent(), this.skin)).width(Value.percentWidth(.35f, this));
+			units.add(new Label("" + s.getCharacter().getHpPercent(), this.skin)).width(Value.percentWidth(.35f, this));
+			units.add(new Label("" + s.getCharacter().getApPercent(), this.skin)).width(Value.percentWidth(.35f, this));
 			units.row();
 		}
 	}

@@ -28,7 +28,7 @@ public class SelectedLabel extends Label {
 			
 			labelElements[2] = "AP: " + selected.getCurrentAP() + "/" + selected.getMaxAP();
 			
-			labelElements[3] = "Attack: " + selected.getToHit() + "\nDefence: " + selected.getToRes();
+			labelElements[3] = "Attack: " + selected.getDamage() + "\nDefence: " + selected.getResistance();
 			
 			labelText = labelElements[0] + "\n" + labelElements[1] + "\n" + labelElements[2] + "\n" + labelElements[3] ;
 			this.setText(labelText);

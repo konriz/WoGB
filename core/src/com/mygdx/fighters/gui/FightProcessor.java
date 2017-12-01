@@ -7,8 +7,8 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.mygdx.fighters.GameData;
 import com.mygdx.fighters.MapData;
+import com.mygdx.fighters.Soldier;
 import com.mygdx.fighters.gui.UI.MovesDialog;
-import com.mygdx.fighters.units.Unit;
 import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.Input.Keys;
 
@@ -201,9 +201,9 @@ public class FightProcessor implements InputProcessor {
 		}
 		
 		
-		else if (GameData.occupation(clickTile) instanceof Unit)
+		else if (GameData.occupation(clickTile) instanceof Soldier)
 		{
-			Unit target = (Unit) GameData.occupation(clickTile);
+			Soldier target = (Soldier) GameData.occupation(clickTile);
 			
 			if (GameData.selected.isMoving())
 			{

@@ -6,6 +6,11 @@ public class Placeable {
 	protected int[][] directions;
 	protected int[][] range;
 	
+	public Placeable()
+	{
+		
+	}
+	
 	public Placeable(int x, int y)
 	{
 		pos = new int[2];

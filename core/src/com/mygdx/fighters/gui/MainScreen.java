@@ -20,9 +20,9 @@ import com.mygdx.fighters.Flag;
 import com.mygdx.fighters.GameData;
 import com.mygdx.fighters.MapData;
 import com.mygdx.fighters.Placeable;
+import com.mygdx.fighters.Soldier;
 import com.mygdx.fighters.Team;
 import com.mygdx.fighters.gui.UI.GameTable;
-import com.mygdx.fighters.units.Unit;
 
 public class MainScreen implements Screen {
 	
@@ -30,7 +30,7 @@ public class MainScreen implements Screen {
 	private Skin skin;
 	
 	private SpriteBatch batch;
-	private ArrayList<Unit> units;
+	private ArrayList<Soldier> soldiers;
 	private Texture texture;
 	
 	private BarsTextures textures;
@@ -72,12 +72,12 @@ public class MainScreen implements Screen {
 		hit = states.get(6);
 		boosted = states.get(7);
 		
-		units = new ArrayList<Unit>();
+		soldiers = new ArrayList<Soldier>();
 		for (Team t : GameData.teams)
 		{
-			for (Unit u : t.getAll())
+			for (Soldier s : t.getAll())
 			{
-				units.add(u);
+				soldiers.add(s);
 			}
 		}
 		
@@ -155,61 +155,61 @@ public class MainScreen implements Screen {
 			batch.draw(texture, f.getPos()[0] * MapData.tileSize, f.getPos()[1] * MapData.tileSize);
 		}
 		
-		if (units.size() > 0)
+		if (soldiers.size() > 0)
 		{
 			
-			for (Unit u : units)
+			for (Soldier s : soldiers)
 			{
-				if (u.getCharacter().isAlive() == false)
+				if (s.getCharacter().isAlive() == false)
 				{
 					
-					batch.draw(dead, u.getPos()[0] * MapData.tileSize, u.getPos()[1] * MapData.tileSize);
+					batch.draw(dead, s.getPos()[0] * MapData.tileSize, s.getPos()[1] * MapData.tileSize);
 				}
 			}
-			for (Unit u : units)
+			for (Soldier s : soldiers)
 			{
 				
-				if (u.getCharacter().isAlive())
+				if (s.getCharacter().isAlive())
 				{
 					
-					texture = u.getSprite();
-					batch.draw(texture, u.getPos()[0] * MapData.tileSize, u.getPos()[1] * MapData.tileSize);
+					texture = s.getUnit().getSprite();
+					batch.draw(texture, s.getPos()[0] * MapData.tileSize, s.getPos()[1] * MapData.tileSize);
 					
-					hpBar = textures.getHpBar(u.getHpPercent());
-					batch.draw(hpBar, u.getPos()[0] * MapData.tileSize, u.getPos()[1] * MapData.tileSize);
+					hpBar = textures.getHpBar(s.getCharacter().getHpPercent());
+					batch.draw(hpBar, s.getPos()[0] * MapData.tileSize, s.getPos()[1] * MapData.tileSize);
 					
-					apBar = textures.getApBar(u.getApPercent());
-					batch.draw(apBar, u.getPos()[0] * MapData.tileSize, u.getPos()[1] * MapData.tileSize);
+					apBar = textures.getApBar(s.getCharacter().getApPercent());
+					batch.draw(apBar, s.getPos()[0] * MapData.tileSize, s.getPos()[1] * MapData.tileSize);
 					
 				}
 				
-				if (u.isHit() || u.isBoosted())
+				if (s.isHit() || s.isBoosted())
 				{
 					if (Timer.run)
 					{
 						if (Timer.get() < 0.5f)
 						{
 							Timer.tick(Gdx.graphics.getDeltaTime());
-							if (u.isHit())
+							if (s.isHit())
 							{
-								batch.draw(hit, u.getPos()[0] * MapData.tileSize, u.getPos()[1] * MapData.tileSize);
+								batch.draw(hit, s.getPos()[0] * MapData.tileSize, s.getPos()[1] * MapData.tileSize);
 							}
-							else if (u.isBoosted())
+							else if (s.isBoosted())
 							{
-								batch.draw(boosted, u.getPos()[0] * MapData.tileSize, u.getPos()[1] * MapData.tileSize);
+								batch.draw(boosted, s.getPos()[0] * MapData.tileSize, s.getPos()[1] * MapData.tileSize);
 							}
 						}
 						else
 						{
 							Timer.stop();
 							
-							if (u.isHit())
+							if (s.isHit())
 							{
-								u.setHit(false);
+								s.setHit(false);
 							}
-							else if (u.isBoosted())
+							else if (s.isBoosted())
 							{
-								u.setBoosted(false);
+								s.setBoosted(false);
 							}
 						}
 					}
@@ -238,9 +238,9 @@ public class MainScreen implements Screen {
 						{
 							batch.draw(capture, dir[0] * MapData.tileSize, dir[1] * MapData.tileSize);
 						}
-						else if (target instanceof Unit)
+						else if (target instanceof Soldier)
 						{
-							if (GameData.isEnemy((Unit) target))
+							if (GameData.isEnemy((Soldier) target))
 							{
 								batch.draw(attack, dir[0] * MapData.tileSize, dir[1] * MapData.tileSize);
 							}
@@ -319,9 +319,9 @@ public class MainScreen implements Screen {
 		return this.skin;
 	}
 
-	public void addUnit(Unit u)
+	public void addUnit(Soldier u)
 	{
-		this.units.add(u);
+		this.soldiers.add(u);
 	}
 	
 	public FightersGame getGame()

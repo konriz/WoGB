@@ -1,11 +1,9 @@
 package com.mygdx.fighters.units;
 
-import com.badlogic.gdx.utils.Array;
 import com.mygdx.fighters.moves.Move;
 
-
 /**
- * Character class for Unit backend
+ * Character class for Soldier backend
  * @author konriz
  *
  */
@@ -15,22 +13,17 @@ public class Character {
 	private boolean alive;
 	private Race race;
 	private Profession profession;
-	private Array<Move> moves;
+	private Move[] moves;
 	
 	private String name;
 	
-	private int str, end, dex, mel, maxHP, maxAP, res, dam;
+	private int[] stats = new int[4];
+	private int maxHP, currentHP, maxAP, currentAP, res, dam;
 	
 	private String path;
 	
 	private int points;
 
-	
-	private int toHit;
-	private int toRes;
-	private int currentHP;
-	private int currentAP;
-	
 	// TODO make inventory useful!
 	// private Inventory inventory;
 	
@@ -52,22 +45,19 @@ public class Character {
 		moves = profession.getMoves();
 		// inventory = new Inventory(this, 15);
 		
-		str = 10 + race.getStr() + profession.getStr();
-		end = 10 + race.getEnd() + profession.getEnd();
-		dex = 10 + race.getDex() + profession.getDex();
-		mel = 10 + race.getMel() + profession.getMel();
+		for(int i=0; i<4; i++)
+		{
+			this.stats[i] = race.getStats()[i] + profession.getStats()[i] + 10;
+		}
 		
-		maxHP = 20 + end;
-		maxAP = dex / 5;
-		res = end / 5;
-		dam = str / 5 + mel/5;
+		maxHP = 20 + stats[1];
+		maxAP = stats[2] / 5;
+		res = stats[1] / 5;
+		dam = stats[0] / 5 + stats[3]/5;
 		
 		path = race.getPath() + "/" + profession.getPath();
 		
-		points = str + end + dex + mel;
-		
-		toHit = dam;
-		toRes = res;
+		points = stats[0] + stats[1] + stats[2] + stats[3];
 		
 		resetAP();
 		resetHP();
@@ -134,6 +124,11 @@ public class Character {
 		return currentHP;
 	}
 	
+	public int getHpPercent()
+	{
+		return currentHP * 100 / maxHP;
+	}
+	
 	public void setCurrentHP(int hp)
 	{
 		currentHP = hp;
@@ -164,6 +159,11 @@ public class Character {
 		currentAP = ap;
 	}
 	
+	public int getApPercent()
+	{
+	return currentAP * 100 / maxAP;
+	}
+	
 	public void dropCurrentAP(int ap)
 	{
 		currentAP -= ap;
@@ -179,19 +179,19 @@ public class Character {
 		return this.points;
 	}
 	
-	public Array<Move> getMoves()
+	public Move[] getMoves()
 	{
 		return moves;
 	}
 	
-	public int getToHit()
+	public int getDamage()
 	{
-		return toHit;
+		return dam;
 	}
 	
-	public int getToRes()
+	public int getResistance()
 	{
-		return toRes;
+		return res;
 	}
 
 	public void buffCurrentHP(int heal) {

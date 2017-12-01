@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 
 public interface Draw {
 	
-	public String getPath();
+	public String getPath(Race race, Profession profession);
 	
 	public Texture getSprite();
 	public void setSprite(Texture sprite);
