@@ -208,7 +208,6 @@ public class FightProcessor implements InputProcessor {
 			if (GameData.selected.isMoving())
 			{
 				// TODO disable friendly fire and enemy healing - or not?
-				// TODO range of attack!
 				GameData.selected.getMove().tryOn(target);
 				return true;
 			}

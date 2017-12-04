@@ -12,6 +12,7 @@ public class Leech extends Move {
 		setApCost(apCost);
 		setPower(power);
 		setRange(1);
+		setDescription("Damages unit for " + getPower() + " times your attack, and heals You with the same amount");
 	}
 
 	@Override

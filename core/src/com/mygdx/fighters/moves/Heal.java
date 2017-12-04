@@ -12,6 +12,7 @@ public class Heal extends Move {
 		setApCost(apCost);
 		setPower(power);
 		setRange(5);
+		setDescription("Heals choosen unit " + getRange() + " apart from you, for " + getPower() + " times your base attack");
 	}
 	
 	@Override

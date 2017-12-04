@@ -12,18 +12,19 @@ public class Attack extends Move {
 		setApCost(apCost);
 		setPower(power);
 		setRange(1);
+		setDescription("Melee attack for " + getPower() + " times your base attack.");
 	}
 	
 	public int getDamage()
 	{
-		return (GameData.selected.getCharacter().getDamage() + Dice.use(6) + getPower()) * getPower();
+		return (GameData.selected.getCharacter().getDamage() + Dice.use(6)) * getPower();
 	}
 	
 	public void useOn(Soldier target)
 	{
 		GameData.selected.getCharacter().dropCurrentAP(getApCost());
 		target.setHit(true);
-		target.getCharacter().dropCurrentHP(getDamage());
+		target.getCharacter().hitCurrentHP(getDamage());
 		target.getCharacter().checkAlive();
 		GameData.selected.setMoving(false);
 	}

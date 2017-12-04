@@ -77,6 +77,10 @@ public class Team {
 		return team.size();
 	}
 	
+	public int indexOf(Soldier target) {
+		return team.indexOf(target);
+	}
+	
 	public String getName()
 	{
 		return name;

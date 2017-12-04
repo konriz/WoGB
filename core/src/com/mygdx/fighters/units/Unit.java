@@ -19,7 +19,7 @@ public class Unit implements Draw{
 		E
 	}
 	
-	private Texture sprite, up, down, left, right, tableSelected;
+	private Texture up, down, left, right, tableSelected;
 	
 	public Unit(Race r, Profession p)
 	{
@@ -32,9 +32,6 @@ public class Unit implements Draw{
 		right = new Texture(Gdx.files.internal(path +"/rt.gif"));
 		
 		tableSelected = new Texture(Gdx.files.internal(path +"/ts.gif"));
-					
-		sprite = down;
-					
 	}
 	
 	public String getPath(Race race, Profession profession)
@@ -43,12 +40,29 @@ public class Unit implements Draw{
 		return path;
 	}
 
-	public Texture getSprite() {
+	public Texture getSprite(Direction dir) {
+		Texture sprite;
+		{
+			switch (dir)
+			{
+			case E:
+				sprite = this.right;
+				break;
+			case N:
+				sprite = this.up;
+				break;
+			case S:
+				sprite = this.down;
+				break;
+			case W:
+				sprite = this.left;
+				break;
+			default:
+				sprite = this.down;
+				break;
+			}
+		}
 		return sprite;
-	}
-	
-	public void setSprite(Texture sprite) {
-		this.sprite = sprite;
 	}
 
 	public Texture getUp() {

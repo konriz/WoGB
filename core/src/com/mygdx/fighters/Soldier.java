@@ -11,7 +11,7 @@ public class Soldier extends Placeable implements Fight {
 	private Unit unit;
 	private Team team;
 	
-	private Direction facing;
+	private Direction facing = Direction.S;
 	
 	private boolean boosted = false;
 	private boolean hit = false;
@@ -182,23 +182,6 @@ public class Soldier extends Placeable implements Fight {
 	@Override
 	public void rotate(Direction dir) {
 		this.setFacing(dir);
-		switch (dir)
-		{
-		case S:
-			getUnit().setSprite(getUnit().getDown());
-			
-			break;
-		case W:
-			getUnit().setSprite(getUnit().getLeft());
-			break;
-		case E:
-			getUnit().setSprite(getUnit().getRight());
-			break;
-		case N:
-			getUnit().setSprite(getUnit().getUp());
-			break;
-		}	
-
 	}
 
 	@Override

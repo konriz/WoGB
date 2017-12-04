@@ -46,4 +46,3 @@ public class FightersGame extends Game {
 
 // TODO inputProcessors - change switch to table selection
 // TODO ranged units
-// TODO healing/magic units

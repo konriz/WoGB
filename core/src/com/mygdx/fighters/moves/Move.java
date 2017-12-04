@@ -9,9 +9,11 @@ public abstract class Move implements Perform {
 
 	
 	private String name;
+	private String description;
 	private int apCost;
 	private int power;
 	private int range;
+
 	
 	public void setName(String name)
 	{
@@ -20,6 +22,16 @@ public abstract class Move implements Perform {
 	
 	public String getName() {
 		return name;
+	}
+	
+	public void setDescription(String description)
+	{
+		this.description = description;
+	}
+	
+	public String getDescription()
+	{
+		return this.description;
 	}
 
 	public void setApCost(int apCost)

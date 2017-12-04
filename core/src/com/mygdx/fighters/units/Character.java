@@ -203,7 +203,10 @@ public class Character {
 		{
 			setCurrentHP(getCurrentHP() + heal);
 		}
-		
+	}
+
+	public void hitCurrentHP(int damage) {
+		this.dropCurrentHP(damage - getResistance());
 	}
 	
 }

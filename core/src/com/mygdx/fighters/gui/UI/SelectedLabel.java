@@ -12,7 +12,7 @@ public class SelectedLabel extends Label {
 	public SelectedLabel()
 	{
 		super("Selected", FightersGame.skin);
-		this.labelElements = new String[4];
+		this.labelElements = new String[5];
 		refresh();
 	}
 	
@@ -28,9 +28,11 @@ public class SelectedLabel extends Label {
 			
 			labelElements[2] = "AP: " + selected.getCurrentAP() + "/" + selected.getMaxAP();
 			
-			labelElements[3] = "Attack: " + selected.getDamage() + "\nDefence: " + selected.getResistance();
+			labelElements[3] = "Base damage: " + (selected.getDamage() + 1) + "-" + (selected.getDamage() + 6);
 			
-			labelText = labelElements[0] + "\n" + labelElements[1] + "\n" + labelElements[2] + "\n" + labelElements[3] ;
+			labelElements[4] = "Defence: " + selected.getResistance();
+			
+			labelText = labelElements[0] + "\n" + labelElements[1] + "\n" + labelElements[2] + "\n" + labelElements[3] + "\n" + labelElements[4] ;
 			this.setText(labelText);
 		}
 		catch (NullPointerException e)

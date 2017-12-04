@@ -53,7 +53,6 @@ public class Placeable {
 			return false;
 		}
 	}
-	//TODO interface ranged
 	
 	public int[][] getRange()
 	{	

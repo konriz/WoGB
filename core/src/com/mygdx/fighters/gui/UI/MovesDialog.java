@@ -3,6 +3,7 @@ package com.mygdx.fighters.gui.UI;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.TextTooltip;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.fighters.GameData;
 import com.mygdx.fighters.gui.FightersGame;
@@ -45,7 +46,6 @@ public class MovesDialog extends Dialog {
 				
 				public void clicked(InputEvent event, float x, float y)
 				{
-					// TODO implement working move
 					if (buttonMove.getApCost() <= GameData.selected.getCharacter().getCurrentAP())
 					{
 						GameData.selected.setMove(buttonMove);
@@ -53,6 +53,8 @@ public class MovesDialog extends Dialog {
 					hide();
 				}
 			});
+			
+			addListener(new TextTooltip(move.getDescription(), FightersGame.skin));
 		}
 	}
 }

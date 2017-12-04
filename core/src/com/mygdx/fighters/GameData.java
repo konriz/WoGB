@@ -14,7 +14,8 @@ public class GameData {
 	public static int phase;
 	
 	public static Teams teams;
-	public static int active;
+	public static int activeIndex;
+	public static int selectedIndex = 0;
 	public static Soldier selected;
 	
 	public static Array<Flag> flags;
@@ -39,7 +40,7 @@ public class GameData {
 	
 	public static Team getActive()
 	{
-		return teams.get(active);
+		return teams.get(activeIndex);
 	}
 	
 	public MapData getMapData()
@@ -57,9 +58,10 @@ public class GameData {
 		if (occupation(clickTile) instanceof Soldier)
 		{
 			Soldier target = (Soldier) occupation(clickTile);
-			
-			if(getActive().contains(target))
+			int index = getActive().indexOf(target);
+			if(index > -1)
 			{
+				selectedIndex = index;
 				select(target);
 			}
 		}
@@ -71,20 +73,39 @@ public class GameData {
 		selected.setDirections();
 	}
 	
+	public void selectNext()
+	{
+		if (selectedIndex >= teams.get(activeIndex).size())
+		{
+			selectedIndex = 0;
+		}
+		
+		Soldier s = getActive().get(selectedIndex);
+		if (s.getCharacter().isAlive() && selected != s)
+		{
+			select(s);
+		}
+		else
+		{
+			selectedIndex ++;
+			selectNext();
+		}
+	}
+	
 	/**
 	 * Switches active to next team
 	 * @return Index of current active team
 	 */
 	public int switchActive()
 	{
-		active ++;
+		activeIndex ++;
 		
-		if (active == teams.size)
+		if (activeIndex == teams.size)
 		{
-			active = 0;
+			activeIndex = 0;
 		}
 		
-		return active;
+		return activeIndex;
 	}
 	
 	public void skipTurn()
@@ -194,25 +215,10 @@ public class GameData {
 	public static void resetTurn()
 	{
 		GameData.turn = 1;
-		active = 0;
+		activeIndex = 0;
 	}
 		
-	public void selectNext()
-	{
-		int unitCount = getActive().size();
-		while (unitCount > 0)
-		{
-			Soldier s = getActive().get(getActive().size() - unitCount);
-			if (s.getCharacter().isAlive() && s.getApPercent() > 0 && s != selected )
-			{
-				select(s);
-				return;
-			}
-			unitCount --;
-		}
-		System.out.println("Side " + getActive().getName() + " can't move! Pass turn!");
-		return;
-	}
+	
 	
 	public void advance()
 	{
