@@ -181,26 +181,7 @@ public class GameData {
 	
 	public static Placeable occupation(int[] target)
 	{
-// TODO get occupation data from map field!
-		for (Team t : teams)
-		{
-			for (Soldier s : t.getAll())
-			{
-				if (s.samePos(target) && s.getCharacter().isAlive())
-				{
-						return s;
-				}			
-			}
-		}
-		
-		for (Flag f : flags)
-		{
-			if (f.samePos(target))
-			{
-				return f;
-			}
-		}
-		return null;
+		return field.getField(target).getOccupation();
 	}
 	
 	public static boolean isEnemy(Soldier target)
