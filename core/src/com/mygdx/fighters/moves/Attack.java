@@ -25,7 +25,7 @@ public class Attack extends Move {
 		GameData.selected.getCharacter().dropCurrentAP(getApCost());
 		target.setHit(true);
 		target.getCharacter().hitCurrentHP(getDamage());
-		target.getCharacter().checkAlive();
+		target.checkAlive();
 		GameData.selected.setMoving(false);
 	}
 

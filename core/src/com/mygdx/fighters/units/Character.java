@@ -84,21 +84,6 @@ public class Character {
 		alive = state;
 	}
 	
-	/**
-	 * Checks if unit is alive, changes state if dead
-	 * @return true if alive, false if dead
-	 */
-	public boolean checkAlive()
-	{
-		if (getCurrentHP() <= 0)
-		{
-			setAlive(false);
-			return false;
-		}
-		else
-			return true;
-	}
-	
 	public Race getRace()
 	{
 		return race;

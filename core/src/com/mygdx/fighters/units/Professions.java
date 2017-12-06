@@ -13,7 +13,7 @@ public class Professions {
 	private static int[] eliteStats = {10,10,10,10};
 	public static Profession elite = new ProfessionBuilder().name("Elite").moves(eliteMoves).stats(eliteStats).buildProfession();
 	
-	private static Move[] scoutMoves = {Moves.attack};
+	private static Move[] scoutMoves = {Moves.attack, Moves.bowShoot};
 	private static int[] scoutStats = {0,0,15,0};
 	public static Profession scout = new ProfessionBuilder().name("Scout").moves(scoutMoves).stats(scoutStats).buildProfession();
 	

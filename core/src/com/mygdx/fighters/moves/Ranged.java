@@ -4,30 +4,31 @@ import com.mygdx.fighters.Dice;
 import com.mygdx.fighters.GameData;
 import com.mygdx.fighters.Soldier;
 
-public class Leech extends Move {
-	
-	public Leech(String name, int apCost, int power)
+public class Ranged extends Move {
+
+	public Ranged(String name, int apCost, int power, int range)
 	{
 		setName(name);
 		setApCost(apCost);
 		setPower(power);
-		setRange(1);
-		setDescription("Damages unit for " + getPower() + " times your attack, and heals You with the same amount");
+		setRange(range);
+		setDescription("Ranged attack for " + getPower() + " times your base attack. Range : " + this.getRange() + " tiles.");
 	}
-
+	
 	@Override
 	public void useOn(Soldier target) {
+		
 		GameData.selected.getCharacter().dropCurrentAP(getApCost());
 		target.setHit(true);
-		int damage = getDamage();
-		target.getCharacter().dropCurrentHP(damage);
+		target.getCharacter().hitCurrentHP(getDamage());
 		target.checkAlive();
-		GameData.selected.getCharacter().buffCurrentHP(damage);
 		GameData.selected.setMoving(false);
+
 	}
 	
 	public int getDamage()
 	{
 		return (GameData.selected.getCharacter().getDamage() + Dice.use(6)) * getPower();
 	}
+
 }

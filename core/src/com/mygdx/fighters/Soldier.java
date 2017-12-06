@@ -279,6 +279,18 @@ public class Soldier extends Placeable implements Fight {
 	public boolean isBoosted() {
 		return boosted;
 	}
+	
+	public boolean checkAlive()
+	{
+		if (character.getCurrentHP() <= 0)
+		{
+			character.setAlive(false);
+			GameData.field.getField(pos).clearOccupation();
+			return false;
+		}
+		else
+			return true;
+	}
 
 
 

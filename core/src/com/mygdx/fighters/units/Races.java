@@ -2,9 +2,7 @@ package com.mygdx.fighters.units;
 
 public class Races {
 
-	// TODO fill professions and stats
-	
-	private static Profession[] humanProfessions = {Professions.warrior, Professions.elite, Professions.healer};
+	private static Profession[] humanProfessions = {Professions.warrior, Professions.elite, Professions.healer, Professions.scout};
 	private static int[] humanStats = {5, 5, 5, 5};
 	public static Race human = new RaceBuilder().name("Human").professions(humanProfessions).stats(humanStats).buildRace();
 	
