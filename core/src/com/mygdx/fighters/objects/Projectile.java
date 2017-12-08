@@ -1,4 +1,4 @@
-package objects;
+package com.mygdx.fighters.objects;
 
 import com.badlogic.gdx.graphics.Texture;
 
