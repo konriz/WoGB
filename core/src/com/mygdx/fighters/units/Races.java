@@ -6,7 +6,7 @@ public class Races {
 	private static int[] humanStats = {5, 5, 5, 5};
 	public static Race human = new RaceBuilder().name("Human").professions(humanProfessions).stats(humanStats).buildRace();
 	
-	private static Profession[] dwarfProfessions = {Professions.warrior, Professions.elite};
+	private static Profession[] dwarfProfessions = {Professions.warrior, Professions.elite, Professions.crossbow};
 	private static int[] dwarfStats = {5, 10, 0, 10};
 	public static Race dwarf = new RaceBuilder().name("Dwarf").professions(dwarfProfessions).stats(dwarfStats).buildRace();
 	
@@ -18,7 +18,7 @@ public class Races {
 	private static int[] undeadStats = {5, 10, 5, 0};
 	public static Race undead = new RaceBuilder().name("Undead").professions(undeadProfessions).stats(undeadStats).buildRace();
 	
-	private static Profession[] animalProfessions = {Professions.warrior};
+	private static Profession[] animalProfessions = {Professions.warrior, Professions.firebug};
 	private static int[] animalStats = {5, 5, 10, 0};
 	public static Race animal = new RaceBuilder().name("Animal").professions(animalProfessions).stats(animalStats).buildRace();
 	

@@ -44,8 +44,8 @@ public class ActiveUnitsTable extends Table {
 				units.add(new Image(s.getUnit().getDown()));
 			}
 			
-			units.add(new Label("" + s.getCharacter().getHpPercent(), this.skin)).width(Value.percentWidth(.35f, this));
-			units.add(new Label("" + s.getCharacter().getApPercent(), this.skin)).width(Value.percentWidth(.35f, this));
+			units.add(new Label("" + s.getCharacter().getStats().getHpPercent(), this.skin)).width(Value.percentWidth(.35f, this));
+			units.add(new Label("" + s.getCharacter().getStats().getApPercent(), this.skin)).width(Value.percentWidth(.35f, this));
 			units.row();
 		}
 	}

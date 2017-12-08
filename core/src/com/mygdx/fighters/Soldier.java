@@ -27,7 +27,6 @@ public class Soldier extends Placeable implements Fight {
 		this.team = team;
 	}
 	
-	@Override
 	public Character getCharacter() {
 		return this.character;
 	}
@@ -42,19 +41,16 @@ public class Soldier extends Placeable implements Fight {
 		return this.team;
 	}
 
-	@Override
 	public int getHpPercent() {
-		return this.character.getHpPercent();
+		return character.getStats().getHpPercent();
 	}
 
-	@Override
 	public int getApPercent() {
-		return this.character.getApPercent();
+		return character.getStats().getApPercent();
 	}
 
-	@Override
 	public boolean canMove() {
-		if (this.getCharacter().getCurrentAP() >= GameData.map.getAPCost(this.pos)) 
+		if (this.getCharacter().getStats().getCurrentAP() >= GameData.map.getAPCost(this.pos)) 
 		{
 			return true;
 		}
@@ -64,7 +60,6 @@ public class Soldier extends Placeable implements Fight {
 		}
 	}
 
-	@Override
 	public void step(Direction dir) {
 		this.rotate(dir);
 		GameData.field.getField(getPos()).clearOccupation();
@@ -75,25 +70,25 @@ public class Soldier extends Placeable implements Fight {
 			case S:
 				{
 					getPos()[1] --;
-					this.getCharacter().dropCurrentAP(moveAP);
+					this.getCharacter().getStats().dropCurrentAP(moveAP);
 				}
 				break;
 			case W:
 				{
 					getPos()[0] --;
-					this.getCharacter().dropCurrentAP(moveAP);
+					this.getCharacter().getStats().dropCurrentAP(moveAP);
 				}
 				break;
 			case E:
 				{
 					getPos()[0] ++;
-					this.getCharacter().dropCurrentAP(moveAP);
+					this.getCharacter().getStats().dropCurrentAP(moveAP);
 				}
 				break;
 			case N:
 				{
 					getPos()[1] ++;
-					this.getCharacter().dropCurrentAP(moveAP);
+					this.getCharacter().getStats().dropCurrentAP(moveAP);
 				}
 				break;
 
@@ -143,7 +138,7 @@ public class Soldier extends Placeable implements Fight {
 					// Move
 					else
 					{
-						GameData.selected.getCharacter().dropCurrentAP(apCost);
+						GameData.selected.getCharacter().getStats().dropCurrentAP(apCost);
 						this.setPos(position);
 					}
 					break;
@@ -158,7 +153,7 @@ public class Soldier extends Placeable implements Fight {
 			Flag targetFlag = (Flag) target;
 			if (targetFlag.getOwner().getName() != GameData.selected.getTeam().getName())
 			{
-				this.getCharacter().dropCurrentAP(GameData.map.getAPCost(this.pos));
+				this.getCharacter().getStats().dropCurrentAP(GameData.map.getAPCost(this.pos));
 				targetFlag.setOwner(GameData.getActive());
 			}
 		}
@@ -205,32 +200,27 @@ public class Soldier extends Placeable implements Fight {
 
 	}
 
-	@Override
 	public void setFacing(Direction direction) {
 		this.facing = direction;
 	}
 
-	@Override
 	public Direction getFacing() {
 		return this.facing;
 	}
 
-	@Override
 	public void setMoving(boolean b) {
 		this.moving = false;
 
 	}
 
-	@Override
 	public boolean isMoving() {
 		return this.moving;
 	}
 
-	@Override
 	public void setMove(Move m) {
 		this.move = m;
 		this.setRange(range(move.getRange()));
-		if (m.getApCost() > this.getCharacter().getCurrentAP())
+		if (m.getApCost() > this.getCharacter().getStats().getCurrentAP())
 		{
 			System.out.println("Not enough AP");
 			this.moving = false;
@@ -242,14 +232,12 @@ public class Soldier extends Placeable implements Fight {
 
 	}
 
-	@Override
 	public Move getMove() {
 		return this.move;
 	}
 	
-	@Override
 	public boolean useMove(Move move, Soldier target) {
-		if(move.getApCost() > getCharacter().getCurrentAP())
+		if(move.getApCost() > getCharacter().getStats().getCurrentAP())
 		{
 			return false;	
 		}
@@ -270,20 +258,18 @@ public class Soldier extends Placeable implements Fight {
 		this.hit = hit;
 	}
 	
-	@Override
 	public void setBoosted(boolean b) {
 		this.boosted = b;
 
 	}
 
-	@Override
 	public boolean isBoosted() {
 		return boosted;
 	}
 	
 	public boolean checkAlive()
 	{
-		if (character.getCurrentHP() <= 0)
+		if (character.getStats().getCurrentHP() <= 0)
 		{
 			character.setAlive(false);
 			GameData.field.getField(pos).clearOccupation();
@@ -293,11 +279,8 @@ public class Soldier extends Placeable implements Fight {
 			return true;
 	}
 
-
-
-	@Override
 	public void rest() {
-		this.getCharacter().resetAP();
+		this.getCharacter().getStats().rest();
 
 	}
 	

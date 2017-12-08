@@ -17,17 +17,17 @@ public class Leech extends Move {
 
 	@Override
 	public void useOn(Soldier target) {
-		GameData.selected.getCharacter().dropCurrentAP(getApCost());
+		GameData.selected.getCharacter().getStats().dropCurrentAP(getApCost());
 		target.setHit(true);
 		int damage = getDamage();
-		target.getCharacter().dropCurrentHP(damage);
+		target.getCharacter().getStats().hit(damage);
 		target.checkAlive();
-		GameData.selected.getCharacter().buffCurrentHP(damage);
+		GameData.selected.getCharacter().getStats().heal(damage);
 		GameData.selected.setMoving(false);
 	}
 	
 	public int getDamage()
 	{
-		return (GameData.selected.getCharacter().getDamage() + Dice.use(6)) * getPower();
+		return (GameData.selected.getCharacter().getStats().getDamage() + Dice.use(6)) * getPower();
 	}
 }

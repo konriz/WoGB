@@ -175,10 +175,10 @@ public class MainScreen implements Screen {
 					texture = s.getUnit().getSprite(s.getFacing());
 					batch.draw(texture, s.getPos()[0] * MapData.tileSize, s.getPos()[1] * MapData.tileSize);
 					
-					hpBar = textures.getHpBar(s.getCharacter().getHpPercent());
+					hpBar = textures.getHpBar(s.getCharacter().getStats().getHpPercent());
 					batch.draw(hpBar, s.getPos()[0] * MapData.tileSize, s.getPos()[1] * MapData.tileSize);
 					
-					apBar = textures.getApBar(s.getCharacter().getApPercent());
+					apBar = textures.getApBar(s.getCharacter().getStats().getApPercent());
 					batch.draw(apBar, s.getPos()[0] * MapData.tileSize, s.getPos()[1] * MapData.tileSize);
 					
 				}

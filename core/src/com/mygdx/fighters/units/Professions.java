@@ -17,6 +17,10 @@ public class Professions {
 	private static int[] scoutStats = {0,0,15,0};
 	public static Profession scout = new ProfessionBuilder().name("Scout").moves(scoutMoves).stats(scoutStats).buildProfession();
 	
+	private static Move[] crossbowMoves = {Moves.attack, Moves.crossbowShoot};
+	private static int[] crossbowStats = {5,5,5,0};
+	public static Profession crossbow = new ProfessionBuilder().name("Crossbowman").moves(crossbowMoves).stats(crossbowStats).buildProfession();
+	
 	private static Move[] vampireMoves = {Moves.attack, Moves.leech};
 	private static int[] vampireStats = {10,5,15,10};
 	public static Profession vampire = new ProfessionBuilder().name("Vampire").moves(vampireMoves).stats(vampireStats).buildProfession();
@@ -24,5 +28,9 @@ public class Professions {
 	private static Move[] healerMoves = {Moves.attack, Moves.heal};
 	private static int[] healerStats = {-5,-5,0,0};
 	public static Profession healer = new ProfessionBuilder().name("Healer").moves(healerMoves).stats(healerStats).buildProfession();
+	
+	private static Move[] firebugMoves = {Moves.attack, Moves.spit};
+	private static int[] firebugStats = {0,15,-5,0};
+	public static Profession firebug = new ProfessionBuilder().name("Firebug").moves(firebugMoves).stats(firebugStats).buildProfession();
 	
 }

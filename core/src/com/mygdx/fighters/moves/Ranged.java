@@ -15,20 +15,17 @@ public class Ranged extends Move {
 		setDescription("Ranged attack for " + getPower() + " times your base attack. Range : " + this.getRange() + " tiles.");
 	}
 	
-	@Override
 	public void useOn(Soldier target) {
-		
-		GameData.selected.getCharacter().dropCurrentAP(getApCost());
+		GameData.selected.getCharacter().getStats().dropCurrentAP(getApCost());
 		target.setHit(true);
-		target.getCharacter().hitCurrentHP(getDamage());
+		target.getCharacter().getStats().hit(getDamage());
 		target.checkAlive();
 		GameData.selected.setMoving(false);
-
 	}
 	
 	public int getDamage()
 	{
-		return (GameData.selected.getCharacter().getDamage() + Dice.use(6)) * getPower();
+		return (GameData.selected.getCharacter().getStats().getDamage() + Dice.use(6)) * getPower();
 	}
 
 }

@@ -15,17 +15,16 @@ public class Heal extends Move {
 		setDescription("Heals choosen unit " + getRange() + " apart from you, for " + getPower() + " times your base attack");
 	}
 	
-	@Override
 	public void useOn(Soldier target) {
-		GameData.selected.getCharacter().dropCurrentAP(getApCost());
+		GameData.selected.getCharacter().getStats().dropCurrentAP(getApCost());
 		target.setBoosted(true);
-		target.getCharacter().buffCurrentHP(getHeal());
+		target.getCharacter().getStats().heal(getHeal());
 		GameData.selected.setMoving(false);
 	}
 	
 	public int getHeal()
 	{
-		return (GameData.selected.getCharacter().getDamage() + Dice.use(6)) * getPower();
+		return (GameData.selected.getCharacter().getStats().getDamage() + Dice.use(6)) * getPower();
 	}
 	
 }

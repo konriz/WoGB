@@ -10,4 +10,6 @@ public class Moves {
 	
 	public static Heal heal = new Heal("Heal", 2, 1);
 	public static Leech leech = new Leech("Leech", 2, 1);
+	
+	public static Ranged spit = new Ranged("Spit", 3, 3, 3);
 }

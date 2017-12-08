@@ -60,7 +60,3 @@ public class FightersGame extends Game {
 	}
 	
 }
-
-// TODO inputProcessors - change switch to table selection
-// TODO ranged animations
-// TODO cursor green if in range
