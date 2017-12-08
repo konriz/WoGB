@@ -272,6 +272,29 @@ public class FightProcessor implements InputProcessor {
 			camera.translate(0, 5);
 		}
 		
+		if (GameData.selected.isMoving())
+		{
+			int x = (int) (((screenX - Gdx.graphics.getWidth()/2.0) * camera.zoom + camera.position.x));
+			int y = (int) ((Gdx.graphics.getHeight()/2.0 - screenY) * camera.zoom + camera.position.y );
+			int[] pos = new int[] {x,y};
+			
+			for(int[] range : GameData.selected.getRange())
+			{
+				if (Arrays.equals(pos, range))
+				{
+					FightersGame.setTargetCursor(true);
+				}
+				else
+				{
+					FightersGame.setTargetCursor(false);
+				}
+			}
+		}
+		
+		
+		
+		
+		
 
 		return true;
 	}

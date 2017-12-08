@@ -16,7 +16,8 @@ public class FightersGame extends Game {
 	public static GameData data;
 	
 	public static Cursor select;
-	public static Cursor target;
+	public static Cursor noTarget, okTarget, target;
+	private static boolean cursorState = false;
 	
 	public static MyMultiplexer multiplexer;
 	

@@ -229,6 +229,7 @@ public class Soldier extends Placeable implements Fight {
 	@Override
 	public void setMove(Move m) {
 		this.move = m;
+		this.setRange(range(move.getRange()));
 		if (m.getApCost() > this.getCharacter().getCurrentAP())
 		{
 			System.out.println("Not enough AP");
