@@ -30,7 +30,10 @@ public class FightersGame extends Game {
 		game = this;
 		
 		select = Gdx.graphics.newCursor(new Pixmap(Gdx.files.internal("sprites/select.gif")), 0, 0);
-		target = Gdx.graphics.newCursor(new Pixmap(Gdx.files.internal("sprites/target.gif")), 16, 16);
+		noTarget = Gdx.graphics.newCursor(new Pixmap(Gdx.files.internal("sprites/noTarget.gif")), 16, 16);
+		okTarget = Gdx.graphics.newCursor(new Pixmap(Gdx.files.internal("sprites/okTarget.gif")), 16, 16);
+		setTargetCursor(cursorState);
+		
 		Gdx.graphics.setCursor(select);
 		
 		menu = new MenuScreen();
@@ -43,7 +46,21 @@ public class FightersGame extends Game {
 		
 	}
 	
+	public static void setTargetCursor(boolean state)
+	{
+		if (state == true)
+		{
+			target = okTarget;
+		}
+		else
+		{
+			target = noTarget;
+		}
+		FightersGame.cursorState = state;
+	}
+	
 }
 
 // TODO inputProcessors - change switch to table selection
-// TODO ranged units
+// TODO ranged animations
+// TODO cursor green if in range
