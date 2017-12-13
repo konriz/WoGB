@@ -8,9 +8,7 @@ public class Attack extends Move {
 	
 	public Attack(String name, int apCost, int power)
 	{
-		setName(name);
-		setApCost(apCost);
-		setPower(power);
+		super(name, apCost, power);
 		setRange(1);
 		setDescription("Melee attack for " + getPower() + " times your base attack.");
 	}

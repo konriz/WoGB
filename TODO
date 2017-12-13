@@ -1,4 +1,5 @@
 buffs and curses
+points for moves
 make table instead of switch in inputProcessors (is it neccesary?)
 center map on unit when it's big
 make minimap

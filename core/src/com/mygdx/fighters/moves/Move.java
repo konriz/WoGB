@@ -15,6 +15,13 @@ public abstract class Move implements Perform {
 	private int range;
 
 	
+	public Move(String name, int apCost, int power)
+	{
+		setName(name);
+		setApCost(apCost);
+		setPower(power);
+	}
+	
 	public void setName(String name)
 	{
 		this.name = name;

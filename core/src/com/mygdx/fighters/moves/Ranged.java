@@ -8,9 +8,7 @@ public class Ranged extends Move {
 
 	public Ranged(String name, int apCost, int power, int range)
 	{
-		setName(name);
-		setApCost(apCost);
-		setPower(power);
+		super(name, apCost, power);
 		setRange(range);
 		setDescription("Ranged attack for " + getPower() + " times your base attack. Range : " + this.getRange() + " tiles.");
 	}

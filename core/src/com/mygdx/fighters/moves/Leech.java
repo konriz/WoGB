@@ -8,9 +8,7 @@ public class Leech extends Move {
 	
 	public Leech(String name, int apCost, int power)
 	{
-		setName(name);
-		setApCost(apCost);
-		setPower(power);
+		super(name, apCost, power);
 		setRange(1);
 		setDescription("Damages unit for " + getPower() + " times your attack, and heals You with the same amount");
 	}

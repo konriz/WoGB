@@ -28,6 +28,7 @@ public class Stats {
 		maxHP = 30 + maxStats[1];
 		currentHP = maxHP;
 		update();
+		resetAP();
 	}
 	
 	public void update()
@@ -35,15 +36,19 @@ public class Stats {
 		for(int i=0; i<4; i++)
 		{
 			currentStats[i] = maxStats[i];
+			
 		}
 		
 		for(Buff buff : buffs)
 		{
-			currentStats[buff.getStatIndex()] += buff.getStrength();
+			if(buff.isActive())
+			{
+				currentStats[buff.getStatIndex()] += buff.getStrength();
+				
+			}
 		}
 		
 		maxAP = currentStats[2] / 5;
-		currentAP = maxAP;
 		damage = currentStats[0] / 5 + currentStats[3] / 5;
 		resistance = currentStats[1] / 5;
 	}
@@ -139,12 +144,13 @@ public class Stats {
 	public void debuff()
 	{
 		buffs.stream().forEach(p->p.expire());
-		buffs.stream().filter(p->!p.isActive()).forEach(p->buffs.remove(p));
+		buffs.stream().filter(p->p.isActive()).forEach(p->System.out.println(p.getStatIndex() + ":" + p.getDuration() + ":" + p.getStrength()));
 	}
 	
 	public void rest()
 	{
 		debuff();
+		update();
 		resetAP();
 	}
 	

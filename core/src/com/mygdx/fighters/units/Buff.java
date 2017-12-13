@@ -7,6 +7,13 @@ public class Buff {
 	private int statIndex;
 	private boolean active = true;
 	
+	public Buff(int duration, int strength, int statIndex)
+	{
+		this.duration = duration;
+		this.strength = strength;
+		this.statIndex = statIndex;
+	}
+	
 	public int getDuration() {
 		return duration;
 	}

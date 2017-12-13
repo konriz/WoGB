@@ -8,9 +8,7 @@ public class Heal extends Move {
 
 	public Heal(String name, int apCost, int power)
 	{
-		setName(name);
-		setApCost(apCost);
-		setPower(power);
+		super(name, apCost, power);
 		setRange(5);
 		setDescription("Heals choosen unit " + getRange() + " apart from you, for " + getPower() + " times your base attack");
 	}
