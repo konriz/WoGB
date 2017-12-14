@@ -52,7 +52,7 @@ public class MainScreen implements Screen {
 		this.game = GameData.game;
 		
 		cameraMenu = new OrthographicCamera();
-		viewportMenu = new FitViewport(1024, 800, cameraMenu);
+		viewportMenu = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), cameraMenu);
 		stage = new Stage(viewportMenu);
 		
 	}

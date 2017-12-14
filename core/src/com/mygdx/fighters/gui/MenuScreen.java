@@ -14,7 +14,7 @@ public class MenuScreen implements Screen {
 	
 	public MenuScreen()
 	{
-		stage = new Stage(new FitViewport(1024, 800));
+		stage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
 		dialog = new WelcomeDialog();
 	}
 	

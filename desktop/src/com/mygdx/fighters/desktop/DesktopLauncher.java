@@ -9,8 +9,9 @@ public class DesktopLauncher {
 		
 
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.width = 1024;
+		config.width = 1280;
 		config.height = 800;
+		config.resizable = false;
 		new LwjglApplication(new FightersGame(), config);
 	}
 }

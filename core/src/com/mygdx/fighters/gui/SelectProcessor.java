@@ -148,7 +148,7 @@ public class SelectProcessor implements InputProcessor {
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
 
-		if (screenX > 900)
+		if (screenX > Gdx.graphics.getWidth() - 100)
 		{
 			camera.translate(5, 0);
 		}
@@ -156,7 +156,7 @@ public class SelectProcessor implements InputProcessor {
 		{
 			camera.translate(-5, 0);
 		}
-		else if (screenY > 700)
+		else if (screenY > Gdx.graphics.getHeight() - 100)
 		{
 			camera.translate(0, -5);
 		}

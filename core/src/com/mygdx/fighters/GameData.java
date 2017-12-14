@@ -3,6 +3,7 @@ package com.mygdx.fighters;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.fighters.gui.FightersGame;
+import com.mygdx.fighters.gui.Messaging.Console;
 
 public class GameData {
 
@@ -25,11 +26,14 @@ public class GameData {
 	public static int victoryPoints;
 	public static int unitsPoints;
 	
+	public static Console console;
+	
 	
 	public GameData()
 	{
 		GameData.game = FightersGame.game;
 		phase = 0;
+		console = new Console();
 	}
 	
 	public static void selectMap(String mapName)
