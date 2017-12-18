@@ -14,6 +14,11 @@ public class Buff {
 		this.statIndex = statIndex;
 	}
 	
+	public Buff clone()
+	{
+		return new Buff(this.duration, this.strength, this.statIndex);
+	}
+	
 	public int getDuration() {
 		return duration;
 	}

@@ -6,7 +6,7 @@ import com.badlogic.gdx.utils.Align;
 public class StatusTable extends Table {
 
 	private StatusLabel status;
-	private PointsLabel points;
+	private PointsBar points;
 	
 	
 	public StatusTable()
@@ -14,7 +14,7 @@ public class StatusTable extends Table {
 		status = new StatusLabel();
 		add(status).align(Align.center);
 		row();
-		points = new PointsLabel();
+		points = new PointsBar();
 		add(points).align(Align.center);
 	}
 	

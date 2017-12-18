@@ -3,6 +3,7 @@ package com.mygdx.fighters.moves;
 import com.mygdx.fighters.Dice;
 import com.mygdx.fighters.GameData;
 import com.mygdx.fighters.Soldier;
+import com.mygdx.fighters.gui.Messaging.RangedMessage;
 
 public class Ranged extends Move {
 
@@ -16,9 +17,11 @@ public class Ranged extends Move {
 	public void useOn(Soldier target) {
 		GameData.selected.getCharacter().getStats().dropCurrentAP(getApCost());
 		target.setHit(true);
-		target.getCharacter().getStats().hit(getDamage());
+		int damage = getDamage();
+		target.getCharacter().getStats().hit(damage);
 		target.checkAlive();
 		GameData.selected.setMoving(false);
+		GameData.console.add(new RangedMessage(target, damage));
 	}
 	
 	public int getDamage()

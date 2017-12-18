@@ -4,6 +4,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.fighters.gui.FightersGame;
 import com.mygdx.fighters.gui.Messaging.Console;
+import com.mygdx.fighters.gui.Messaging.TurnMessage;
 
 public class GameData {
 
@@ -27,7 +28,6 @@ public class GameData {
 	public static int unitsPoints;
 	
 	public static Console console;
-	
 	
 	public GameData()
 	{
@@ -172,12 +172,14 @@ public class GameData {
 			{
 				getActive().getAll().stream().filter(u->u.getCharacter().isAlive()).forEach(u->u.rest());
 				select(getActive().getAll().stream().filter(u->u.getCharacter().isAlive()).findFirst().get());
+				GameData.console.add(new TurnMessage());
 			}
 			
 			else
 			{
 				getActive().setAlive(false);
-				FightersGame.screen.endGame(teams.get(switchActive())); // TODO check if all teams dead
+				FightersGame.screen.endGame(teams.get(switchActive()));
+				// TODO check if all teams dead
 //				skipTurn();
 			}
 		}

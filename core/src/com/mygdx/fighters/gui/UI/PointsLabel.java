@@ -1,26 +1,24 @@
 package com.mygdx.fighters.gui.UI;
 
+import com.badlogic.gdx.scenes.scene2d.ui.Container;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.mygdx.fighters.GameData;
 import com.mygdx.fighters.Team;
 import com.mygdx.fighters.gui.FightersGame;
 
-public class PointsLabel extends Label {
+public class PointsLabel extends Container<Label> {
 
+	private Team team;
 	
-	public PointsLabel()
+	public PointsLabel(Team team)
 	{
-		super("Points", FightersGame.skin);
+		super(new Label("Points", FightersGame.skin));
+		this.team = team;
+		padLeft(15);
 		refresh();
 	}
 	
 	public void refresh()
 	{
-		String text = new String();
-		for (Team t : GameData.teams)
-		{
-			text += "| " + t.getName() + " - " + t.getPoints() + " |";
-		}
-		this.setText(text);
+		getActor().setText(team.getName() + " - " + team.getPoints());
 	}
 }

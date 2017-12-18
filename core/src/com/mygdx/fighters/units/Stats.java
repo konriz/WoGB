@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Stats {
 
-	
+	public static String[] names = {"Strength", "Endurance", "Dexerity", "Fighting skills"};
 	private int[] maxStats = new int[4];
 	private int[] currentStats = new int[4];
 	
@@ -138,13 +138,14 @@ public class Stats {
 				return;
 			}
 		}
-		buffs.add(buff);
+		buffs.add(buff.clone());
 	}
 	
 	public void debuff()
 	{
-		buffs.stream().forEach(p->p.expire());
-		buffs.stream().filter(p->p.isActive()).forEach(p->System.out.println(p.getStatIndex() + ":" + p.getDuration() + ":" + p.getStrength()));
+		for (Buff buff : buffs) {
+			buff.expire();
+		}
 	}
 	
 	public void rest()

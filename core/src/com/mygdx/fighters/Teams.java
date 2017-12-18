@@ -14,6 +14,7 @@ public class Teams extends Array<Team>{
 	 * Automatically shuffles teams - something like initiative roll
 	 * @param teams - teams that are in battle
 	 */
+	
 	public Teams(Array<Team> teams)
 	{
 		for (Team t : teams)
@@ -24,12 +25,7 @@ public class Teams extends Array<Team>{
 	
 	public Teams(int amount)
 	{
-		Array<Team> teams = new Array<Team>();
-		teams.add(new Team(0, "Humans Empire", Races.human));
-		teams.add(new Team(1, "Orks Horde", Races.ork));
-		teams.add(new Team(2, "Dwarfs Division", Races.dwarf));
-		teams.add(new Team(3, "Animals Kingdom", Races.animal));
-		teams.add(new Team(4, "Undead Plague", Races.undead));
+		Array<Team> teams = getAllTeams();
 		teams.shuffle();
 		int i = 0;
 		do 
@@ -40,6 +36,17 @@ public class Teams extends Array<Team>{
 		while (i < amount);
 		
 		
+	}
+	
+	public static Array<Team> getAllTeams()
+	{
+		Array<Team> teams = new Array<Team>();
+		teams.add(new Team(0, "Humans Empire", Races.human));
+		teams.add(new Team(1, "Orks Horde", Races.ork));
+		teams.add(new Team(2, "Dwarfs Division", Races.dwarf));
+		teams.add(new Team(3, "Animals Kingdom", Races.animal));
+		teams.add(new Team(4, "Undead Plague", Races.undead));
+		return teams;
 	}
 
 	public boolean areDeployed() {

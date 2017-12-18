@@ -2,7 +2,9 @@ package com.mygdx.fighters.moves;
 
 import com.mygdx.fighters.GameData;
 import com.mygdx.fighters.Soldier;
+import com.mygdx.fighters.gui.Messaging.BuffMessage;
 import com.mygdx.fighters.units.Buff;
+import com.mygdx.fighters.units.Stats;
 
 public class BuffSpell extends Move {
 
@@ -13,6 +15,17 @@ public class BuffSpell extends Move {
 		super(name, apCost, power);
 		this.setRange(range);
 		this.buff = buff;
+		//TODO make descriptions
+		String type;
+		if(buff.getStrength() < 0)
+		{
+			type = "Curses ";
+		}
+		else
+		{
+			type = "Buffs ";
+		}
+		setDescription(type + Stats.names[buff.getStatIndex()] + " by " + buff.getStrength() + " points for " + buff.getDuration() + " turns.");
 	}
 	
 	public void useOn(Soldier target) {
@@ -22,6 +35,7 @@ public class BuffSpell extends Move {
 		target.getCharacter().getStats().update();
 		target.setBoosted(true);
 		GameData.selected.setMoving(false);
+		GameData.console.add(new BuffMessage(target, buff));
 		
 	}
 	

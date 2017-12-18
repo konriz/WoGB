@@ -3,6 +3,7 @@ package com.mygdx.fighters.moves;
 import com.mygdx.fighters.Dice;
 import com.mygdx.fighters.GameData;
 import com.mygdx.fighters.Soldier;
+import com.mygdx.fighters.gui.Messaging.LeechMessage;
 
 public class Leech extends Move {
 	
@@ -22,6 +23,7 @@ public class Leech extends Move {
 		target.checkAlive();
 		GameData.selected.getCharacter().getStats().heal(damage);
 		GameData.selected.setMoving(false);
+		GameData.console.add(new LeechMessage(target, damage));
 	}
 	
 	public int getDamage()

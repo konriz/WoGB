@@ -3,6 +3,7 @@ package com.mygdx.fighters.moves;
 import com.mygdx.fighters.Dice;
 import com.mygdx.fighters.GameData;
 import com.mygdx.fighters.Soldier;
+import com.mygdx.fighters.gui.Messaging.HealMessage;
 
 public class Heal extends Move {
 
@@ -16,8 +17,10 @@ public class Heal extends Move {
 	public void useOn(Soldier target) {
 		GameData.selected.getCharacter().getStats().dropCurrentAP(getApCost());
 		target.setBoosted(true);
-		target.getCharacter().getStats().heal(getHeal());
+		int heal = getHeal();
+		target.getCharacter().getStats().heal(heal);
 		GameData.selected.setMoving(false);
+		GameData.console.add(new HealMessage(target, heal));
 	}
 	
 	public int getHeal()

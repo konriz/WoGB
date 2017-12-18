@@ -141,5 +141,11 @@ public class Team {
 			return false;
 		}
 	}
+	
+	@Override
+	public String toString()
+	{
+		return getName();
+	}
 
 }
