@@ -1,5 +1,8 @@
 package com.mygdx.fighters;
 
+import com.mygdx.fighters.entities.Flag;
+import com.mygdx.fighters.entities.Placeable;
+
 public class Grid extends Placeable{
 
 	private Placeable occupation;

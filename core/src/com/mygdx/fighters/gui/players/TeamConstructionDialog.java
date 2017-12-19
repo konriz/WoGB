@@ -1,4 +1,4 @@
-package com.mygdx.fighters.gui;
+package com.mygdx.fighters.gui.players;
 
 
 import com.badlogic.gdx.Gdx;
@@ -11,11 +11,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
-import com.mygdx.fighters.Team;
+import com.mygdx.fighters.gui.FightersGame;
+import com.mygdx.fighters.gui.MainScreen;
+import com.mygdx.fighters.gui.StartDialog;
+import com.mygdx.fighters.gui.input.SelectProcessor;
 import com.mygdx.fighters.units.Profession;
 import com.mygdx.fighters.units.Unit;
 import com.mygdx.fighters.GameData;
-import com.mygdx.fighters.SoldierBuilder;
+import com.mygdx.fighters.entities.SoldierBuilder;
+import com.mygdx.fighters.entities.Team;
 import com.mygdx.fighters.units.Character;
 
 public class TeamConstructionDialog extends Dialog {

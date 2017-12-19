@@ -2,7 +2,7 @@ package com.mygdx.fighters.gui.UI;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Container;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.mygdx.fighters.Team;
+import com.mygdx.fighters.entities.Team;
 import com.mygdx.fighters.gui.FightersGame;
 
 public class PointsLabel extends Container<Label> {

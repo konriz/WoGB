@@ -1,5 +1,6 @@
-package com.mygdx.fighters;
+package com.mygdx.fighters.entities;
 
+import com.mygdx.fighters.GameData;
 import com.mygdx.fighters.moves.Move;
 import com.mygdx.fighters.units.Character;
 import com.mygdx.fighters.units.Unit;

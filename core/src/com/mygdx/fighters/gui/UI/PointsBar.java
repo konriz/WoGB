@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.mygdx.fighters.GameData;
-import com.mygdx.fighters.Team;
+import com.mygdx.fighters.entities.Team;
 
 public class PointsBar extends HorizontalGroup {
 

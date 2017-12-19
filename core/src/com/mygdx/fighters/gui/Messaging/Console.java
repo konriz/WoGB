@@ -9,7 +9,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.utils.Align;
 import com.mygdx.fighters.gui.FightersGame;
 
-//TODO maybe container for vertical group? or vertical group of label containers?
 public class Console extends VerticalGroup {
 
 	public List<Message> messages;
@@ -37,6 +36,8 @@ public class Console extends VerticalGroup {
 	
 	public void update()
 	{
+		//TODO console has to scroll, not be limited!
+
 		if(messages.size() > 6)
 		{
 			messages.remove(0);

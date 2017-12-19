@@ -1,4 +1,6 @@
-package com.mygdx.fighters;
+package com.mygdx.fighters.entities;
+
+import com.mygdx.fighters.GameData;
 
 public class Placeable {
 

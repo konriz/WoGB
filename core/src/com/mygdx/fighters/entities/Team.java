@@ -1,4 +1,4 @@
-package com.mygdx.fighters;
+package com.mygdx.fighters.entities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +60,11 @@ public class Team {
 	public int getSide()
 	{
 		return side;
+	}
+	
+	public void setSide(int side)
+	{
+		this.side = side;
 	}
 	
 	public Soldier get(int i)
@@ -147,5 +152,7 @@ public class Team {
 	{
 		return getName();
 	}
+
+
 
 }

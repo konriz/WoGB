@@ -1,6 +1,6 @@
 package com.mygdx.fighters.moves;
 
-import com.mygdx.fighters.Soldier;
+import com.mygdx.fighters.entities.Soldier;
 
 public interface Perform {
 

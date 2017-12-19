@@ -1,7 +1,8 @@
-package com.mygdx.fighters;
+package com.mygdx.fighters.entities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.mygdx.fighters.GameData;
 
 public class Flag extends Placeable {
 

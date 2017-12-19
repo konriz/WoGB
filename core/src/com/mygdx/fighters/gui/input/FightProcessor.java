@@ -1,4 +1,4 @@
-package com.mygdx.fighters.gui;
+package com.mygdx.fighters.gui.input;
 
 import java.util.Arrays;
 
@@ -7,7 +7,11 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.mygdx.fighters.GameData;
 import com.mygdx.fighters.MapData;
-import com.mygdx.fighters.Soldier;
+import com.mygdx.fighters.entities.Soldier;
+import com.mygdx.fighters.gui.FightersGame;
+import com.mygdx.fighters.gui.MainMenu;
+import com.mygdx.fighters.gui.MainScreen;
+import com.mygdx.fighters.gui.Messaging.ChatDialog;
 import com.mygdx.fighters.gui.UI.MovesDialog;
 import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.Input.Keys;
@@ -142,6 +146,14 @@ public class FightProcessor implements InputProcessor {
 				MainMenu mainMenu = new MainMenu();
 				MainScreen.stage.addActor(mainMenu);
 				mainMenu.show(MainScreen.stage);
+				break;
+			}
+			
+			case Keys.T:
+			{
+				ChatDialog chat = new ChatDialog();
+				MainScreen.stage.addActor(chat);
+				chat.show(MainScreen.stage);
 				break;
 			}
 			

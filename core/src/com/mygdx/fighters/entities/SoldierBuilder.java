@@ -1,4 +1,4 @@
-package com.mygdx.fighters;
+package com.mygdx.fighters.entities;
 
 import com.mygdx.fighters.units.Unit;
 import com.mygdx.fighters.units.Character;

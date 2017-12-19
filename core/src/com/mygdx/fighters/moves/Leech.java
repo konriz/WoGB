@@ -2,8 +2,8 @@ package com.mygdx.fighters.moves;
 
 import com.mygdx.fighters.Dice;
 import com.mygdx.fighters.GameData;
-import com.mygdx.fighters.Soldier;
-import com.mygdx.fighters.gui.Messaging.LeechMessage;
+import com.mygdx.fighters.entities.Soldier;
+import com.mygdx.fighters.gui.Messaging.messages.LeechMessage;
 
 public class Leech extends Move {
 	

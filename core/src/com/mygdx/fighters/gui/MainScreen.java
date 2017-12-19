@@ -16,12 +16,12 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.mygdx.fighters.Flag;
 import com.mygdx.fighters.GameData;
 import com.mygdx.fighters.MapData;
-import com.mygdx.fighters.Placeable;
-import com.mygdx.fighters.Soldier;
-import com.mygdx.fighters.Team;
+import com.mygdx.fighters.entities.Flag;
+import com.mygdx.fighters.entities.Placeable;
+import com.mygdx.fighters.entities.Soldier;
+import com.mygdx.fighters.entities.Team;
 import com.mygdx.fighters.gui.UI.GameTable;
 
 public class MainScreen implements Screen {
@@ -110,7 +110,6 @@ public class MainScreen implements Screen {
 		{
 			if(GameData.selected.isMoving())
 			{
-				//TODO change cursor to active when in move range
 				Gdx.graphics.setCursor(FightersGame.target);
 			}
 			else

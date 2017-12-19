@@ -1,7 +1,8 @@
-package com.mygdx.fighters.gui.Messaging;
+package com.mygdx.fighters.gui.Messaging.messages;
 
 import com.mygdx.fighters.GameData;
-import com.mygdx.fighters.Soldier;
+import com.mygdx.fighters.entities.Soldier;
+import com.mygdx.fighters.gui.Messaging.Message;
 import com.mygdx.fighters.units.Buff;
 
 public class BuffMessage extends Message {

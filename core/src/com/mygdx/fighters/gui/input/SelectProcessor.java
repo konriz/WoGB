@@ -1,12 +1,15 @@
-package com.mygdx.fighters.gui;
+package com.mygdx.fighters.gui.input;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.mygdx.fighters.Flag;
 import com.mygdx.fighters.GameData;
 import com.mygdx.fighters.MapData;
-import com.mygdx.fighters.Soldier;
+import com.mygdx.fighters.entities.Flag;
+import com.mygdx.fighters.entities.Soldier;
+import com.mygdx.fighters.gui.FightersGame;
+import com.mygdx.fighters.gui.MainMenu;
+import com.mygdx.fighters.gui.MainScreen;
 import com.badlogic.gdx.Input.Keys;
 
 public class SelectProcessor implements InputProcessor {

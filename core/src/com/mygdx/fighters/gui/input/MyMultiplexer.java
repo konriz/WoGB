@@ -1,7 +1,9 @@
-package com.mygdx.fighters.gui;
+package com.mygdx.fighters.gui.input;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
+import com.mygdx.fighters.gui.MainScreen;
+import com.mygdx.fighters.gui.MenuScreen;
 
 public class MyMultiplexer extends InputMultiplexer {
 

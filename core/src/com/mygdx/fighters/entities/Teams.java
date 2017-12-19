@@ -1,4 +1,4 @@
-package com.mygdx.fighters;
+package com.mygdx.fighters.entities;
 
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.fighters.units.Races;

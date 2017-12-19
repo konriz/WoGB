@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Cursor;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.mygdx.fighters.GameData;
+import com.mygdx.fighters.gui.input.MyMultiplexer;
 
 public class FightersGame extends Game {
 	

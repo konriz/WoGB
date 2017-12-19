@@ -1,4 +1,4 @@
-package com.mygdx.fighters.gui;
+package com.mygdx.fighters.gui.players;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -10,8 +10,11 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.fighters.GameData;
-import com.mygdx.fighters.Team;
-import com.mygdx.fighters.Teams;
+import com.mygdx.fighters.entities.Teams;
+import com.mygdx.fighters.gui.FightersGame;
+import com.mygdx.fighters.gui.MainScreen;
+import com.mygdx.fighters.gui.MenuScreen;
+import com.mygdx.fighters.gui.StartDialog;
 
 public class PlayersDialog extends Dialog {
 	
@@ -33,12 +36,9 @@ public class PlayersDialog extends Dialog {
 		playersBox.setItems(playersList);
 		getContentTable().add(playersBox).colspan(2);
 		
-		//TODO ban choosing equal teams
-		//TODO select side (alliances)
-		
 		teams = new TeamBox(playersBox.getSelected());
 		getContentTable().row();
-		getContentTable().add(teams);
+		getContentTable().add(teams).colspan(4);
 		
 		playersBox.addListener(new ChangeListener(){
 
@@ -57,18 +57,25 @@ public class PlayersDialog extends Dialog {
 		
 		if (object.equals(true))
 		{
-			Array<Team> acceptedTeams = teams.getTeams();
-			
-			GameData.teams = new Teams(acceptedTeams);
-			GameData.resetTurn();
-			GameData.map.setFlags();
-			TeamConstructionDialog teamDialog = new TeamConstructionDialog(GameData.getActive());
-			
-			FightersGame.game.setScreen(FightersGame.screen);
-			FightersGame.multiplexer.setGame();
-			
-			MainScreen.stage.addActor(teamDialog);
-			teamDialog.show(MainScreen.stage);
+			if (teams.areUnique())
+			{
+				GameData.teams = new Teams(teams.getTeams());
+				GameData.resetTurn();
+				GameData.map.setFlags();
+				TeamConstructionDialog teamDialog = new TeamConstructionDialog(GameData.getActive());
+				
+				FightersGame.game.setScreen(FightersGame.screen);
+				FightersGame.multiplexer.setGame();
+				
+				MainScreen.stage.addActor(teamDialog);
+				teamDialog.show(MainScreen.stage);
+			}
+			else
+			{
+				PlayersDialog playersDialog = new PlayersDialog();
+				MenuScreen.stage.addActor(playersDialog);
+				playersDialog.show(MenuScreen.stage);
+			}
 		}
 		
 		else if (object.equals(false))

@@ -8,7 +8,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class MenuScreen implements Screen {
 
-	protected static Stage stage;
+	public static Stage stage;
 	private WelcomeDialog dialog;
 	
 	

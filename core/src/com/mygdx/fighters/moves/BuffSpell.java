@@ -1,8 +1,8 @@
 package com.mygdx.fighters.moves;
 
 import com.mygdx.fighters.GameData;
-import com.mygdx.fighters.Soldier;
-import com.mygdx.fighters.gui.Messaging.BuffMessage;
+import com.mygdx.fighters.entities.Soldier;
+import com.mygdx.fighters.gui.Messaging.messages.BuffMessage;
 import com.mygdx.fighters.units.Buff;
 import com.mygdx.fighters.units.Stats;
 
@@ -15,7 +15,6 @@ public class BuffSpell extends Move {
 		super(name, apCost, power);
 		this.setRange(range);
 		this.buff = buff;
-		//TODO make descriptions
 		String type;
 		if(buff.getStrength() < 0)
 		{

@@ -2,9 +2,14 @@ package com.mygdx.fighters;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.utils.Array;
+import com.mygdx.fighters.entities.Flag;
+import com.mygdx.fighters.entities.Placeable;
+import com.mygdx.fighters.entities.Soldier;
+import com.mygdx.fighters.entities.Team;
+import com.mygdx.fighters.entities.Teams;
 import com.mygdx.fighters.gui.FightersGame;
 import com.mygdx.fighters.gui.Messaging.Console;
-import com.mygdx.fighters.gui.Messaging.TurnMessage;
+import com.mygdx.fighters.gui.Messaging.messages.TurnMessage;
 
 public class GameData {
 

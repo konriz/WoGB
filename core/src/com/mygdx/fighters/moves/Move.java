@@ -3,7 +3,7 @@ package com.mygdx.fighters.moves;
 import java.util.Arrays;
 
 import com.mygdx.fighters.GameData;
-import com.mygdx.fighters.Soldier;
+import com.mygdx.fighters.entities.Soldier;
 
 public abstract class Move implements Perform {
 
