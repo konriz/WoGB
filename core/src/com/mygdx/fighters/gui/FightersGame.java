@@ -23,7 +23,10 @@ public class FightersGame extends Game {
 	public static MyMultiplexer multiplexer;
 	
 	public static FightersGame game;
-
+	
+	private static boolean online;
+	private static boolean host;
+	
 	@Override
 	public void create() {
 		
@@ -45,6 +48,22 @@ public class FightersGame extends Game {
 				
 		multiplexer = new MyMultiplexer();
 		
+	}
+	
+	public static void setOnline(boolean online, boolean isHost)
+	{
+		FightersGame.online = online;
+		FightersGame.host = isHost;
+	}
+	
+	public static boolean isOnline()
+	{
+		return online;
+	}
+	
+	public static boolean isHost()
+	{
+		return host;
 	}
 	
 	public static void setTargetCursor(boolean state)
