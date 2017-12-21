@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.mygdx.fighters.GameData;
 import com.mygdx.fighters.gui.input.MyMultiplexer;
+import com.mygdx.fighters.networking.Host;
 
 public class FightersGame extends Game {
 	
@@ -24,8 +25,10 @@ public class FightersGame extends Game {
 	
 	public static FightersGame game;
 	
-	private static boolean online;
-	private static boolean host;
+	private static boolean isOnline;
+	private static boolean isHost;
+	
+	public static Host host;
 	
 	@Override
 	public void create() {
@@ -33,6 +36,11 @@ public class FightersGame extends Game {
 		skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
 		game = this;
 		
+		// networking block
+		host = new Host();
+		setOnline(true, true);
+		
+		// cursor graphics block
 		select = Gdx.graphics.newCursor(new Pixmap(Gdx.files.internal("sprites/select.gif")), 0, 0);
 		noTarget = Gdx.graphics.newCursor(new Pixmap(Gdx.files.internal("sprites/noTarget.gif")), 16, 16);
 		okTarget = Gdx.graphics.newCursor(new Pixmap(Gdx.files.internal("sprites/okTarget.gif")), 16, 16);
@@ -52,18 +60,18 @@ public class FightersGame extends Game {
 	
 	public static void setOnline(boolean online, boolean isHost)
 	{
-		FightersGame.online = online;
-		FightersGame.host = isHost;
+		FightersGame.isOnline = online;
+		FightersGame.isHost = isHost;
 	}
 	
 	public static boolean isOnline()
 	{
-		return online;
+		return isOnline;
 	}
 	
 	public static boolean isHost()
 	{
-		return host;
+		return isHost;
 	}
 	
 	public static void setTargetCursor(boolean state)

@@ -1,12 +1,9 @@
 package com.mygdx.fighters.networking;
 
-public abstract class Command {
+import com.mygdx.fighters.gui.Messaging.Message;
 
-	
-	
-	public void perform()
-	{
-		
-	};
-	
+public interface Command {
+
+	public Message communicate();
+	public void perform();
 }

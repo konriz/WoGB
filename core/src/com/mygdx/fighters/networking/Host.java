@@ -6,10 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import com.mygdx.fighters.GameData;
-import com.mygdx.fighters.gui.FightersGame;
-
-public class Host extends Comm{
+public class Host implements Connector{
 
 	private ServerSocket host;
 	private Socket guest;
@@ -24,44 +21,57 @@ public class Host extends Comm{
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public void connect()
+	{
 		try {
 			guest = host.accept();
+			System.out.println("Guest connected!");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
 			in = new ObjectInputStream(guest.getInputStream());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		try {
+			System.out.println("Input stream OK!");
 			out = new ObjectOutputStream(guest.getOutputStream());
+			System.out.println("Output stream OK!");
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 	}
 	
-	public GameData receiveData()
+	public void disconnect()
 	{
 		try {
-			GameData gameData = (GameData) in.readObject();
-			return gameData;
+			in.close();
+			out.close();
+			guest.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public Command receiveData()
+	{
+		try {
+			return (Command) in.readObject();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			return FightersGame.data;
+			return new EmptyCommand();
 		} catch (IOException e) {
 			e.printStackTrace();
-			return FightersGame.data;
+			return new EmptyCommand();
 		}
 	}
 	
-	public void sendData()
+	public void sendData(Command c)
 	{
 		try {
-			out.writeObject(FightersGame.data);
+			out.writeObject(c);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
