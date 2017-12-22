@@ -6,7 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class Host implements Connector{
+public class Host extends AbstractConnector{
 
 	private ServerSocket host;
 	private Socket guest;

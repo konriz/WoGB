@@ -93,7 +93,7 @@ public class TeamConstructionDialog extends Dialog {
 		else
 		{
 			GameData.resetTurn();
-			StartDialog dialog = new StartDialog(GameData.game);
+			StartDialog dialog = new StartDialog();
 			MainScreen.stage.addActor(dialog);
 			dialog.show(MainScreen.stage);
 		}

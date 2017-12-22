@@ -20,7 +20,7 @@ public class StartDialog extends Dialog {
 	private Slider unitsSlider, pointsSlider;
 	private SelectBox<String> mapBox;
 	
-	public StartDialog(FightersGame game)
+	public StartDialog()
 	{
 		super("Choose parameters", FightersGame.skin);
 		this.skin = FightersGame.skin;
@@ -91,7 +91,6 @@ public class StartDialog extends Dialog {
 		
 		else if (object.equals(false))
 		{
-			
 			System.exit(0);
 		}
 	}

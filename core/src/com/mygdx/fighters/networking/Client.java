@@ -5,22 +5,21 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-public class Client implements Connector{
+public class Client extends AbstractConnector{
 
 	private Socket host;
 	private ObjectInputStream in;
 	private ObjectOutputStream out;
 	
-	public Client()
+	public Client(String hostAddress)
 	{
 		
 		try {
-			host = new Socket("localhost", 4444);
+			host = new Socket("hostAddress", 4444);
 			System.out.println("Host connected");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 		
 	}
 	

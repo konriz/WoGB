@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.mygdx.fighters.GameData;
 import com.mygdx.fighters.gui.input.MyMultiplexer;
+import com.mygdx.fighters.networking.AbstractConnector;
+import com.mygdx.fighters.networking.Client;
 import com.mygdx.fighters.networking.Host;
 
 public class FightersGame extends Game {
@@ -28,17 +30,13 @@ public class FightersGame extends Game {
 	private static boolean isOnline;
 	private static boolean isHost;
 	
-	public static Host host;
+	public static AbstractConnector connection;
 	
 	@Override
 	public void create() {
 		
 		skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
 		game = this;
-		
-		// networking block
-		host = new Host();
-		setOnline(true, true);
 		
 		// cursor graphics block
 		select = Gdx.graphics.newCursor(new Pixmap(Gdx.files.internal("sprites/select.gif")), 0, 0);
@@ -62,6 +60,16 @@ public class FightersGame extends Game {
 	{
 		FightersGame.isOnline = online;
 		FightersGame.isHost = isHost;
+	}
+	
+	public static void host()
+	{
+		connection = new Host();
+	}
+	
+	public static void guest(String hostAddress)
+	{
+		connection = new Client(hostAddress);
 	}
 	
 	public static boolean isOnline()

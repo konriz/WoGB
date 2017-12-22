@@ -157,13 +157,13 @@ public class FightProcessor implements InputProcessor {
 				break;
 			}
 			
-			case Keys.Y:
-			{
-				System.out.println("Listening on 4444!");
-				FightersGame.host.connect();
-				GameData.console.add(FightersGame.host.receiveData().communicate());
-				FightersGame.host.disconnect();
-			}
+//			case Keys.Y:
+//			{
+//				System.out.println("Listening on 4444!");
+//				FightersGame.host.connect();
+//				GameData.console.add(FightersGame.host.receiveData().communicate());
+//				FightersGame.host.disconnect();
+//			}
 			
 		// map controls
 			

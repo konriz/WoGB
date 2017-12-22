@@ -13,8 +13,13 @@ public class WelcomeDialog extends Dialog {
 	public WelcomeDialog()
 	{
 		super("Welcome to War of Golden Blood", FightersGame.skin);
-		button("Ok", true);
-		button("Exit", false);
+		button("Local game", 0);
+		getButtonTable().row();
+		button("Host game", 1);
+		getButtonTable().row();
+		button("Join game", 2);
+		getButtonTable().row();
+		button("Exit", -1);
 		
 		this.getContentTable().add(new Image(new Texture(Gdx.files.internal("sprites/welcome.gif"))));
 		this.getContentTable().row();
@@ -33,14 +38,37 @@ public class WelcomeDialog extends Dialog {
 	@Override
 	protected void result(Object object) {
 		
-		if (object.equals(true))
-		{
-			StartDialog start = new StartDialog(FightersGame.game);
-			MenuScreen.stage.addActor(start);
-			start.show(MenuScreen.stage);
-		}
+		int mode = (int) object;
 		
-		else if (object.equals(false))
+		if (mode >= 0)
+		{
+			
+			if (mode == 0)
+			{
+				// local mode
+				FightersGame.setOnline(false, false);
+				StartDialog start = new StartDialog();
+				MenuScreen.stage.addActor(start);
+				start.show(MenuScreen.stage);
+			}
+			else if (mode == 1)
+			{
+				// host mode
+				FightersGame.setOnline(true, true);
+				
+				// TODO dialog for showing connected players
+			}
+			else if (mode == 2)
+			{
+				// guest mode
+				FightersGame.setOnline(true, false);
+				ConnectDialog connect = new ConnectDialog();
+				MenuScreen.stage.addActor(connect);
+				connect.show(MenuScreen.stage);
+				// TODO dialog for connecting to host
+			}
+		}
+		else
 		{
 			System.exit(0);
 		}

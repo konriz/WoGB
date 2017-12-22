@@ -80,7 +80,7 @@ public class PlayersDialog extends Dialog {
 		
 		else if (object.equals(false))
 		{
-			StartDialog start = new StartDialog(FightersGame.game);
+			StartDialog start = new StartDialog();
 			MenuScreen.stage.addActor(start);
 			start.show(MenuScreen.stage);
 		}
