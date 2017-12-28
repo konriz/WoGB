@@ -7,6 +7,10 @@ import com.mygdx.fighters.units.Buff;
 
 public class BuffMessage extends Message {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 41L;
 	private String type;
 	String[] stats = {" strength ", " endurance ", " dexterity ", " fighting skills "};
 	

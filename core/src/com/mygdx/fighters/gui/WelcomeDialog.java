@@ -55,7 +55,10 @@ public class WelcomeDialog extends Dialog {
 			{
 				// host mode
 				FightersGame.setOnline(true, true);
-				
+				FightersGame.host();
+				LobbyDialog lobby = new LobbyDialog();
+				MenuScreen.stage.addActor(lobby);
+				lobby.show(MenuScreen.stage);
 				// TODO dialog for showing connected players
 			}
 			else if (mode == 2)

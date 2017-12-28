@@ -1,55 +1,53 @@
 package com.mygdx.fighters.networking;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
-import java.net.Socket;
 
 public class Host extends AbstractConnector{
 
 	private ServerSocket host;
-	private Socket guest;
-	private ObjectInputStream in;
-	private ObjectOutputStream out;
 	
 	public Host()
 	{
 		try {
 			host = new ServerSocket(4444);
+			host.setSoTimeout(10000);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 	}
 	
-	public void connect()
+	public boolean connect()
 	{
 		try {
-			guest = host.accept();
+			setSocket(host.accept());
 			System.out.println("Guest connected!");
 		} catch (IOException e) {
 			e.printStackTrace();
+			return false;
 		}
 		
-		try {
-			in = new ObjectInputStream(guest.getInputStream());
-			System.out.println("Input stream OK!");
-			out = new ObjectOutputStream(guest.getOutputStream());
-			System.out.println("Output stream OK!");
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
+//		try {
+//			in = new ObjectInputStream(guest.getInputStream());
+//			System.out.println("Input stream OK!");
+//			out = new ObjectOutputStream(guest.getOutputStream());
+//			System.out.println("Output stream OK!");
+//			
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//			return false;
+//		}
+		setConnected(true);
+		return true;
 	}
 	
 	public void disconnect()
 	{
 		try {
-			in.close();
-			out.close();
-			guest.close();
+			getIn().close();
+			getOut().close();
+			getSocket().close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -58,7 +56,7 @@ public class Host extends AbstractConnector{
 	public Command receiveData()
 	{
 		try {
-			return (Command) in.readObject();
+			return (Command) getIn().readObject();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			return new EmptyCommand();
@@ -71,7 +69,7 @@ public class Host extends AbstractConnector{
 	public void sendData(Command c)
 	{
 		try {
-			out.writeObject(c);
+			getOut().writeObject(c);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

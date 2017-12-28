@@ -1,25 +1,48 @@
 package com.mygdx.fighters.networking;
 
-public class AbstractConnector implements Connector {
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 
-	@Override
-	public void connect() {
+public abstract class AbstractConnector implements Connector {
 
+	private Socket socket;
+	private ObjectInputStream in;
+	private ObjectOutputStream out;
+	
+	private boolean connected = false;
+	
+	public void setSocket(Socket socket)
+	{
+		this.socket = socket;
+	}
+	
+	public Socket getSocket() {
+		return socket;
 	}
 
-	@Override
-	public void disconnect() {
-
+	public ObjectInputStream getIn() {
+		return in;
 	}
 
-	@Override
-	public void sendData(Command c) {
-
+	public void setIn(ObjectInputStream in) {
+		this.in = in;
 	}
 
-	@Override
-	public Command receiveData() {
-		return null;
+	public ObjectOutputStream getOut() {
+		return out;
+	}
+
+	public void setOut(ObjectOutputStream out) {
+		this.out = out;
+	}
+
+	public boolean isConnected() {
+		return connected;
+	}
+
+	public void setConnected(boolean connected) {
+		this.connected = connected;
 	}
 
 }

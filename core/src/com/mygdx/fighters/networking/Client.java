@@ -1,45 +1,41 @@
 package com.mygdx.fighters.networking;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 public class Client extends AbstractConnector{
 
-	private Socket host;
-	private ObjectInputStream in;
-	private ObjectOutputStream out;
 	
-	public Client(String hostAddress)
+	public Client(String hostAddress) throws IOException
 	{
 		
-		try {
-			host = new Socket("hostAddress", 4444);
+			setSocket(new Socket(hostAddress, 4444));
 			System.out.println("Host connected");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+			setConnected(true);
+
 		
 	}
 	
-	public void connect()
+	public boolean connect()
 	{
-		try {
-			out = new ObjectOutputStream(host.getOutputStream());
-			System.out.println("Output stream OK!");
-			in = new ObjectInputStream(host.getInputStream());
-			System.out.println("Input stream OK!");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			out = new ObjectOutputStream(host.getOutputStream());
+//			System.out.println("Output stream OK!");
+//			in = new ObjectInputStream(host.getInputStream());
+//			System.out.println("Input stream OK!");
+//			return true;
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//			return false;
+//		}
+		return true;
 	}
 	
 	public void disconnect()
 	{
 		try {
-			out.close();
-			host.close();
+			getOut().close();
+			getSocket().close();
 			System.out.println("All closed, good bye!");
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -50,7 +46,7 @@ public class Client extends AbstractConnector{
 	public Command receiveData()
 	{
 		try {
-			return (Command) in.readObject();
+			return (Command) getIn().readObject();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			return new EmptyCommand();
@@ -63,7 +59,7 @@ public class Client extends AbstractConnector{
 	public void sendData(Command command)
 	{
 		try {
-			out.writeObject(command);
+			getOut().writeObject(command);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

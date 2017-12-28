@@ -6,6 +6,11 @@ import com.mygdx.fighters.gui.Messaging.Message;
 
 public class HealMessage extends Message {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 43L;
+
 	public HealMessage(Soldier target, int heal)
 	{
 		setText(GameData.selected.getCharacter().getName() + " healed " + target.getCharacter().getName() + " for " + heal + " HP.");

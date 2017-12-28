@@ -1,5 +1,7 @@
 package com.mygdx.fighters.gui;
 
+import java.io.IOException;
+
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Cursor;
@@ -67,7 +69,7 @@ public class FightersGame extends Game {
 		connection = new Host();
 	}
 	
-	public static void guest(String hostAddress)
+	public static void guest(String hostAddress) throws IOException
 	{
 		connection = new Client(hostAddress);
 	}

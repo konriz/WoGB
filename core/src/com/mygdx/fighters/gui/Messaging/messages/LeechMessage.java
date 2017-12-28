@@ -6,6 +6,11 @@ import com.mygdx.fighters.gui.Messaging.Message;
 
 public class LeechMessage extends Message{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 44L;
+
 	public LeechMessage(Soldier target, int damage)
 	{
 		setText(GameData.selected.getCharacter().getName() + " leached " + damage + " HP from " + target.getCharacter().getName());
