@@ -3,7 +3,7 @@ package com.mygdx.fighters.moves;
 import com.mygdx.fighters.Dice;
 import com.mygdx.fighters.GameData;
 import com.mygdx.fighters.entities.Soldier;
-import com.mygdx.fighters.gui.Messaging.messages.HealMessage;
+import com.mygdx.fighters.messaging.messages.HealMessage;
 
 public class Heal extends Move {
 

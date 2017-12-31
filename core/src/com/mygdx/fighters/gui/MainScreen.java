@@ -26,7 +26,6 @@ import com.mygdx.fighters.gui.UI.GameTable;
 
 public class MainScreen implements Screen {
 	
-	private FightersGame game;
 	private Skin skin;
 	
 	private SpriteBatch batch;
@@ -49,7 +48,6 @@ public class MainScreen implements Screen {
 	
 	public MainScreen ()
 	{
-		this.game = GameData.game;
 		
 		cameraMenu = new OrthographicCamera();
 		viewportMenu = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), cameraMenu);
@@ -321,11 +319,6 @@ public class MainScreen implements Screen {
 	public void addUnit(Soldier u)
 	{
 		this.soldiers.add(u);
-	}
-	
-	public FightersGame getGame()
-	{
-		return this.game;
 	}
 	
 	private static class Timer

@@ -8,16 +8,15 @@ import com.mygdx.fighters.entities.Soldier;
 import com.mygdx.fighters.entities.Team;
 import com.mygdx.fighters.entities.Teams;
 import com.mygdx.fighters.gui.FightersGame;
-import com.mygdx.fighters.gui.Messaging.Console;
-import com.mygdx.fighters.gui.Messaging.messages.TurnMessage;
+import com.mygdx.fighters.messaging.Console;
+import com.mygdx.fighters.messaging.messages.TurnMessage;
 
 public class GameData {
 
+	public static String mapName;
 	public static MapData map;
 	public static GridField field;
 
-	public static FightersGame game;
-	
 	public static int phase;
 	
 	public static Teams teams;
@@ -36,14 +35,15 @@ public class GameData {
 	
 	public GameData()
 	{
-		GameData.game = FightersGame.game;
 		phase = 0;
 		console = new Console();
+		console.add("Welcome to WoGB!");
 	}
 	
 	public static void selectMap(String mapName)
 	{
-		GameData.map = new MapData("maps/" + mapName);
+		GameData.map = new MapData(mapName);
+		GameData.mapName = map.getName();
 		GameData.field = new GridField();
 	}
 	
@@ -210,8 +210,6 @@ public class GameData {
 		activeIndex = 0;
 	}
 		
-	
-	
 	public void advance()
 	{
 		phase ++;
@@ -244,14 +242,14 @@ public class GameData {
 	
 	public void pointFlags()
 	{
-			for (Flag f : flags)
+		for (Flag f : flags)
+		{
+			Team owner = f.getOwner();
+			
+			if (owner != null)
 			{
-				Team owner = f.getOwner();
-				
-				if (owner != null)
-				{
-					owner.addPoint();
-				}
+				owner.addPoint();
 			}
+		}
 	}
 }

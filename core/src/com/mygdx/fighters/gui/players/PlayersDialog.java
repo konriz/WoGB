@@ -57,8 +57,9 @@ public class PlayersDialog extends Dialog {
 		
 		if (object.equals(true))
 		{
-			if (teams.areUnique())
+			if (teams.getTeams().areUnique())
 			{
+				
 				GameData.teams = new Teams(teams.getTeams());
 				GameData.resetTurn();
 				GameData.map.setFlags();

@@ -1,6 +1,6 @@
-package com.mygdx.fighters.gui.Messaging.messages;
+package com.mygdx.fighters.messaging.messages;
 
-import com.mygdx.fighters.gui.Messaging.Message;
+import com.mygdx.fighters.messaging.Message;
 
 public class ChatMessage extends Message {
 

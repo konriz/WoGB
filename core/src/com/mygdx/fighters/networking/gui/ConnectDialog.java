@@ -1,10 +1,13 @@
-package com.mygdx.fighters.gui;
+package com.mygdx.fighters.networking.gui;
 
 import java.io.IOException;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import com.mygdx.fighters.gui.FightersGame;
+import com.mygdx.fighters.gui.MenuScreen;
+import com.mygdx.fighters.gui.WelcomeDialog;
 
 public class ConnectDialog extends Dialog {
 
@@ -13,7 +16,7 @@ public class ConnectDialog extends Dialog {
 	public ConnectDialog()
 	{
 		super("Connect", FightersGame.skin);
-		hostIP = new TextField("Host IP", FightersGame.skin);
+		hostIP = new TextField("localhost", FightersGame.skin);
 		getContentTable().add(hostIP);
 		button("Connect", true);
 		button("Cancel", false);
@@ -34,14 +37,18 @@ public class ConnectDialog extends Dialog {
 			try
 			{
 				FightersGame.guest(hostIP.getText());
+				FightersGame.connection.connect();
+				NickDialog nickname = new NickDialog();
+				MenuScreen.stage.addActor(nickname);
+				nickname.show(MenuScreen.stage);
 			}
 			catch (IOException e)
 			{
 				e.printStackTrace();
-				ConnectDialog connect = new ConnectDialog();
-				connect.setFailed();
-				MenuScreen.stage.addActor(connect);
-				connect.show(MenuScreen.stage);
+				ConnectDialog connectDialog = new ConnectDialog();
+				connectDialog.setFailed();
+				MenuScreen.stage.addActor(connectDialog);
+				connectDialog.show(MenuScreen.stage);
 			}
 		}
 		else if (object.equals(false))

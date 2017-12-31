@@ -6,12 +6,13 @@ import java.net.ServerSocket;
 public class Host extends AbstractConnector{
 
 	private ServerSocket host;
+	private int connections;
 	
 	public Host()
 	{
+		connections = 1;
 		try {
 			host = new ServerSocket(4444);
-			host.setSoTimeout(10000);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -23,55 +24,19 @@ public class Host extends AbstractConnector{
 		try {
 			setSocket(host.accept());
 			System.out.println("Guest connected!");
+			connectStreams();
+			setConnected(true);
+			connections ++;
+			return true;
 		} catch (IOException e) {
 			e.printStackTrace();
 			return false;
 		}
-		
-//		try {
-//			in = new ObjectInputStream(guest.getInputStream());
-//			System.out.println("Input stream OK!");
-//			out = new ObjectOutputStream(guest.getOutputStream());
-//			System.out.println("Output stream OK!");
-//			
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//			return false;
-//		}
-		setConnected(true);
-		return true;
 	}
 	
-	public void disconnect()
+	public int getConnections()
 	{
-		try {
-			getIn().close();
-			getOut().close();
-			getSocket().close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		return connections;
 	}
 	
-	public Command receiveData()
-	{
-		try {
-			return (Command) getIn().readObject();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			return new EmptyCommand();
-		} catch (IOException e) {
-			e.printStackTrace();
-			return new EmptyCommand();
-		}
-	}
-	
-	public void sendData(Command c)
-	{
-		try {
-			getOut().writeObject(c);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 }

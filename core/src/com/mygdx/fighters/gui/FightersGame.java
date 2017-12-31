@@ -31,6 +31,7 @@ public class FightersGame extends Game {
 	
 	private static boolean isOnline;
 	private static boolean isHost;
+	public static String nickname;
 	
 	public static AbstractConnector connection;
 	

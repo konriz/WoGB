@@ -11,8 +11,8 @@ import com.mygdx.fighters.entities.Soldier;
 import com.mygdx.fighters.gui.FightersGame;
 import com.mygdx.fighters.gui.MainMenu;
 import com.mygdx.fighters.gui.MainScreen;
-import com.mygdx.fighters.gui.Messaging.ChatDialog;
 import com.mygdx.fighters.gui.UI.MovesDialog;
+import com.mygdx.fighters.messaging.ChatDialog;
 import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.Input.Keys;
 

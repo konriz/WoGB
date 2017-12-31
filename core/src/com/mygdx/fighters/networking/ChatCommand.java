@@ -1,7 +1,8 @@
 package com.mygdx.fighters.networking;
 
-import com.mygdx.fighters.gui.Messaging.Message;
-import com.mygdx.fighters.gui.Messaging.messages.ChatMessage;
+import com.mygdx.fighters.GameData;
+import com.mygdx.fighters.messaging.Message;
+import com.mygdx.fighters.messaging.messages.ChatMessage;
 
 public class ChatCommand extends AbstractCommand {
 
@@ -9,9 +10,9 @@ public class ChatCommand extends AbstractCommand {
 	
 	private ChatMessage message;
 	
-	public ChatCommand(String message)
+	public ChatCommand(ChatMessage message)
 	{
-		this.message = new ChatMessage(message);
+		this.message = message;
 	}
 	
 	public Message communicate()
@@ -21,7 +22,7 @@ public class ChatCommand extends AbstractCommand {
 	
 	public void perform()
 	{
-		communicate();
+		GameData.console.add(communicate());
 	}
 	
 }

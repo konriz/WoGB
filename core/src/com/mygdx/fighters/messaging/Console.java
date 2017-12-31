@@ -1,4 +1,4 @@
-package com.mygdx.fighters.gui.Messaging;
+package com.mygdx.fighters.messaging;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,6 @@ public class Console extends VerticalGroup {
 	{
 		this.align(Align.bottom);
 		messages = new ArrayList<>();
-		add("Console test");
 	}
 	
 	public void add(String text)

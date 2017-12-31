@@ -1,4 +1,4 @@
-package com.mygdx.fighters.gui.Messaging;
+package com.mygdx.fighters.messaging;
 
 import java.io.Serializable;
 

@@ -2,7 +2,7 @@ package com.mygdx.fighters.moves;
 
 import com.mygdx.fighters.GameData;
 import com.mygdx.fighters.entities.Soldier;
-import com.mygdx.fighters.gui.Messaging.messages.BuffMessage;
+import com.mygdx.fighters.messaging.messages.BuffMessage;
 import com.mygdx.fighters.units.Buff;
 import com.mygdx.fighters.units.Stats;
 

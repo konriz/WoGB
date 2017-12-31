@@ -6,6 +6,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Align;
+import com.mygdx.fighters.GameData;
+import com.mygdx.fighters.networking.gui.ConnectDialog;
 
 public class WelcomeDialog extends Dialog {
 
@@ -42,7 +44,7 @@ public class WelcomeDialog extends Dialog {
 		
 		if (mode >= 0)
 		{
-			
+			FightersGame.data = new GameData();
 			if (mode == 0)
 			{
 				// local mode
@@ -56,10 +58,10 @@ public class WelcomeDialog extends Dialog {
 				// host mode
 				FightersGame.setOnline(true, true);
 				FightersGame.host();
-				LobbyDialog lobby = new LobbyDialog();
-				MenuScreen.stage.addActor(lobby);
-				lobby.show(MenuScreen.stage);
-				// TODO dialog for showing connected players
+				StartDialog start = new StartDialog();
+				MenuScreen.stage.addActor(start);
+				start.show(MenuScreen.stage);
+				
 			}
 			else if (mode == 2)
 			{
@@ -68,7 +70,6 @@ public class WelcomeDialog extends Dialog {
 				ConnectDialog connect = new ConnectDialog();
 				MenuScreen.stage.addActor(connect);
 				connect.show(MenuScreen.stage);
-				// TODO dialog for connecting to host
 			}
 		}
 		else

@@ -9,6 +9,7 @@ import com.mygdx.fighters.entities.Flag;
 
 public class MapData {
 	
+	private String name;
 	private TiledMap map;
 	private MapProperties prop;
 	private int mapWidth, mapHeight, players;
@@ -28,14 +29,25 @@ public class MapData {
 		return mapHeight;
 	}
 
-	public MapData(String path)
+	public MapData(String name)
 	{
-		map = new TmxMapLoader().load(path);
+		this.name = name;
+		map = new TmxMapLoader().load("maps/" + name);
 		prop = map.getProperties();
 		players = (Integer) prop.get("players");
 		mapWidth = prop.get("width", Integer.class);
 		mapHeight = prop.get("height", Integer.class);
 		tileSize = prop.get("tilewidth", Integer.class);
+	}
+	
+	public String getName()
+	{
+		return name;
+	}
+	
+	public int getMaxPlayers()
+	{
+		return this.players;
 	}
 	
 	public Array<Integer> getPlayers()

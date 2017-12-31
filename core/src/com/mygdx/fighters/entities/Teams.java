@@ -1,7 +1,6 @@
 package com.mygdx.fighters.entities;
 
 import com.badlogic.gdx.utils.Array;
-import com.mygdx.fighters.units.Races;
 
 /**
  * Aray for storing teams fighting on the screen;
@@ -23,6 +22,11 @@ public class Teams extends Array<Team>{
 		}
 	}
 	
+	public Teams()
+	{
+		
+	}
+	
 	public Teams(int amount)
 	{
 		Array<Team> teams = getAllTeams();
@@ -34,18 +38,15 @@ public class Teams extends Array<Team>{
 			i++;
 		}
 		while (i < amount);
-		
-		
 	}
 	
 	public static Array<Team> getAllTeams()
 	{
 		Array<Team> teams = new Array<Team>();
-		teams.add(new Team(0, "Humans Empire", Races.human));
-		teams.add(new Team(1, "Orks Horde", Races.ork));
-		teams.add(new Team(2, "Dwarfs Division", Races.dwarf));
-		teams.add(new Team(3, "Animals Kingdom", Races.animal));
-		teams.add(new Team(4, "Undead Plague", Races.undead));
+		for(Fraction team : Fraction.values())
+		{
+			teams.add(team.getTeam());
+		}
 		return teams;
 	}
 
@@ -69,6 +70,22 @@ public class Teams extends Array<Team>{
 			return false;
 		}
 		
+	}
+	
+	public boolean areUnique()
+	{
+		Array<String> teamsNames = new Array<String>();
+		Array<String> playersNames = new Array<String>();
+		for (Team team : this)
+		{
+			if (teamsNames.contains(team.getName(), false) || playersNames.contains(team.getPlayer().getName(), false))
+			{
+				return false;
+			}
+			teamsNames.add(team.getName());
+			playersNames.add(team.getPlayer().getName());
+		}
+		return true;
 	}
 
 }

@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.fighters.GameData;
 import com.mygdx.fighters.gui.players.PlayersDialog;
+import com.mygdx.fighters.networking.gui.NickDialog;
 
 public class StartDialog extends Dialog {
 
@@ -83,9 +84,18 @@ public class StartDialog extends Dialog {
 			GameData.unitsPoints = (int) unitsSlider.getValue();
 			GameData.victoryPoints = (int) pointsSlider.getValue();
 			
-			PlayersDialog playersDialog = new PlayersDialog();
-			MenuScreen.stage.addActor(playersDialog);
-			playersDialog.show(MenuScreen.stage);
+			if(FightersGame.isOnline())
+			{
+				NickDialog nickname = new NickDialog();
+				MenuScreen.stage.addActor(nickname);
+				nickname.show(MenuScreen.stage);
+			}
+			else 
+			{
+				PlayersDialog playersDialog = new PlayersDialog();
+				MenuScreen.stage.addActor(playersDialog);
+				playersDialog.show(MenuScreen.stage);
+			}
 			
 		}
 		

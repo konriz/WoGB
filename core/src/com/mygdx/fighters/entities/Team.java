@@ -9,14 +9,14 @@ import com.mygdx.fighters.units.Race;
 
 public class Team {
 	
+	private Player player;
+	private int points;
 	private List<Soldier> team;
 	public static Team plain = new Team();
-	private int side;
 	private String name;
 	private Race race;
 	private boolean alive;
 	private Texture flag, banner;
-	private int points;
 	private int deployed;
 	
 	/**
@@ -25,26 +25,35 @@ public class Team {
 	 * @param name - name for team
 	 * @param race - team's race
 	 */
-	public Team(int side, String name, Race race)
+	public Team(String name, Race race)
 	{
+		this.player = new Player();
+		this.points = 0;
 		this.team = new ArrayList<>();
-		this.side = side;
 		this.name = name;
 		this.race = race;
 		this.alive = true;
 		this.flag = new Texture(Gdx.files.internal("sprites/" + this.race.getPath() + "/flag.gif"));
 		this.banner = new Texture(Gdx.files.internal("sprites/" + this.race.getPath() + "/banner.gif"));
 		deployed = 0;
-		points = 0;
 	}
 	
 	public Team()
 	{
-		this.side = -1;
 		this.name = "World";
 		this.race = new Race();
 		this.alive = false;
 		this.flag = new Texture(Gdx.files.internal("sprites/" + this.race.getPath() + "/flag.gif"));
+	}
+	
+	public void setPlayer(Player player)
+	{
+		this.player = player;
+	}
+	
+	public Player getPlayer()
+	{
+		return player;
 	}
 	
 	public void add(Soldier s)
@@ -55,16 +64,6 @@ public class Team {
 	public boolean contains(Soldier s)
 	{
 		return team.contains(s);
-	}
-	
-	public int getSide()
-	{
-		return side;
-	}
-	
-	public void setSide(int side)
-	{
-		this.side = side;
 	}
 	
 	public Soldier get(int i)
@@ -122,7 +121,7 @@ public class Team {
 	
 	public int getPoints()
 	{
-		return this.points;
+		return points;
 	}
 	
 	public int getDeployed()
